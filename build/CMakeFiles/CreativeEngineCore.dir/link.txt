@@ -1,0 +1,2 @@
+/usr/bin/ar qc libCreativeEngineCore.a CMakeFiles/CreativeEngineCore.dir/Core/Logger.cpp.o CMakeFiles/CreativeEngineCore.dir/Core/Time.cpp.o CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o
+/usr/bin/ranlib libCreativeEngineCore.a
