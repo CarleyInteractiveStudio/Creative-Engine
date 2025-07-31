@@ -93,6 +93,7 @@ CreativeEngine_EXTERNAL_OBJECTS =
 CreativeEngine: CMakeFiles/CreativeEngine.dir/main.cpp.o
 CreativeEngine: CMakeFiles/CreativeEngine.dir/build.make
 CreativeEngine: libCreativeEngineCore.a
+CreativeEngine: /usr/lib/x86_64-linux-gnu/libSDL2.so
 CreativeEngine: CMakeFiles/CreativeEngine.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable CreativeEngine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CreativeEngine.dir/link.txt --verbose=$(VERBOSE)

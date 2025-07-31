@@ -97,10 +97,38 @@ CMakeFiles/CreativeEngineCore.dir/Core/Time.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CreativeEngineCore.dir/Core/Time.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/Core/Time.cpp -o CMakeFiles/CreativeEngineCore.dir/Core/Time.cpp.s
 
+CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
+CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o: /app/Engine/Application.cpp
+CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o -c /app/Engine/Application.cpp
+
+CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/Engine/Application.cpp > CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.i
+
+CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/Engine/Application.cpp -o CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.s
+
+CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
+CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o: /app/Engine/GameLoop.cpp
+CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o -c /app/Engine/GameLoop.cpp
+
+CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/Engine/GameLoop.cpp > CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.i
+
+CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/Engine/GameLoop.cpp -o CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.s
+
 CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
 CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o: /app/Object/Component.cpp
 CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o -c /app/Object/Component.cpp
 
 CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.i: cmake_force
@@ -114,7 +142,7 @@ CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.s: cmake_force
 CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
 CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o: /app/Object/Object.cpp
 CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o -c /app/Object/Object.cpp
 
 CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.i: cmake_force
@@ -125,23 +153,43 @@ CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/Object/Object.cpp -o CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.s
 
+CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
+CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o: /app/Platform/Window.cpp
+CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o -c /app/Platform/Window.cpp
+
+CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/Platform/Window.cpp > CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.i
+
+CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/Platform/Window.cpp -o CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.s
+
 # Object files for target CreativeEngineCore
 CreativeEngineCore_OBJECTS = \
 "CMakeFiles/CreativeEngineCore.dir/Core/Logger.cpp.o" \
 "CMakeFiles/CreativeEngineCore.dir/Core/Time.cpp.o" \
+"CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o" \
+"CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o" \
 "CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o" \
-"CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o"
+"CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o" \
+"CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o"
 
 # External object files for target CreativeEngineCore
 CreativeEngineCore_EXTERNAL_OBJECTS =
 
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Core/Logger.cpp.o
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Core/Time.cpp.o
+libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o
+libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o
+libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/build.make
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libCreativeEngineCore.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libCreativeEngineCore.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/CreativeEngineCore.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CreativeEngineCore.dir/link.txt --verbose=$(VERBOSE)
 

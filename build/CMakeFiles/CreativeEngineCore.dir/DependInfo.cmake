@@ -10,8 +10,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/app/Core/Logger.cpp" "CMakeFiles/CreativeEngineCore.dir/Core/Logger.cpp.o" "gcc" "CMakeFiles/CreativeEngineCore.dir/Core/Logger.cpp.o.d"
   "/app/Core/Time.cpp" "CMakeFiles/CreativeEngineCore.dir/Core/Time.cpp.o" "gcc" "CMakeFiles/CreativeEngineCore.dir/Core/Time.cpp.o.d"
+  "/app/Engine/Application.cpp" "CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o" "gcc" "CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o.d"
+  "/app/Engine/GameLoop.cpp" "CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o" "gcc" "CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o.d"
   "/app/Object/Component.cpp" "CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o" "gcc" "CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o.d"
   "/app/Object/Object.cpp" "CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o" "gcc" "CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o.d"
+  "/app/Platform/Window.cpp" "CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o" "gcc" "CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

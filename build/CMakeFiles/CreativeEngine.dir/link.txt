@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/CreativeEngine.dir/main.cpp.o -o CreativeEngine  libCreativeEngineCore.a
+/usr/bin/c++ CMakeFiles/CreativeEngine.dir/main.cpp.o -o CreativeEngine  libCreativeEngineCore.a /usr/lib/x86_64-linux-gnu/libSDL2.so

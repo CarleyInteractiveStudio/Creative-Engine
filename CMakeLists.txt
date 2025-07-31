@@ -15,6 +15,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 file(GLOB_RECURSE ENGINE_CORE_SOURCES
     "Core/*.cpp"
     "Object/*.cpp"
+    "Engine/*.cpp"
+    "Platform/*.cpp"
+    "Input/*.cpp"
 )
 
 # Create a static library named "CreativeEngineCore" from the source files.
@@ -35,6 +38,9 @@ target_include_directories(CreativeEngineCore PUBLIC
 # Creates an executable named "CreativeEngine" from main.cpp.
 add_executable(CreativeEngine main.cpp)
 
-# Links our executable against the core engine library.
+# Find external packages
+find_package(SDL2 REQUIRED)
+
+# Links our executable against the core engine library and other dependencies.
 # This makes the classes and functions in our library available to the executable.
-target_link_libraries(CreativeEngine PRIVATE CreativeEngineCore)
+target_link_libraries(CreativeEngine PRIVATE CreativeEngineCore SDL2::SDL2)

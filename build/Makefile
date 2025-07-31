@@ -190,6 +190,54 @@ Core/Time.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Core/Time.cpp.s
 .PHONY : Core/Time.cpp.s
 
+Engine/Application.o: Engine/Application.cpp.o
+.PHONY : Engine/Application.o
+
+# target to build an object file
+Engine/Application.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o
+.PHONY : Engine/Application.cpp.o
+
+Engine/Application.i: Engine/Application.cpp.i
+.PHONY : Engine/Application.i
+
+# target to preprocess a source file
+Engine/Application.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.i
+.PHONY : Engine/Application.cpp.i
+
+Engine/Application.s: Engine/Application.cpp.s
+.PHONY : Engine/Application.s
+
+# target to generate assembly for a file
+Engine/Application.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.s
+.PHONY : Engine/Application.cpp.s
+
+Engine/GameLoop.o: Engine/GameLoop.cpp.o
+.PHONY : Engine/GameLoop.o
+
+# target to build an object file
+Engine/GameLoop.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o
+.PHONY : Engine/GameLoop.cpp.o
+
+Engine/GameLoop.i: Engine/GameLoop.cpp.i
+.PHONY : Engine/GameLoop.i
+
+# target to preprocess a source file
+Engine/GameLoop.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.i
+.PHONY : Engine/GameLoop.cpp.i
+
+Engine/GameLoop.s: Engine/GameLoop.cpp.s
+.PHONY : Engine/GameLoop.s
+
+# target to generate assembly for a file
+Engine/GameLoop.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.s
+.PHONY : Engine/GameLoop.cpp.s
+
 Object/Component.o: Object/Component.cpp.o
 .PHONY : Object/Component.o
 
@@ -238,6 +286,30 @@ Object/Object.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.s
 .PHONY : Object/Object.cpp.s
 
+Platform/Window.o: Platform/Window.cpp.o
+.PHONY : Platform/Window.o
+
+# target to build an object file
+Platform/Window.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o
+.PHONY : Platform/Window.cpp.o
+
+Platform/Window.i: Platform/Window.cpp.i
+.PHONY : Platform/Window.i
+
+# target to preprocess a source file
+Platform/Window.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.i
+.PHONY : Platform/Window.cpp.i
+
+Platform/Window.s: Platform/Window.cpp.s
+.PHONY : Platform/Window.s
+
+# target to generate assembly for a file
+Platform/Window.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.s
+.PHONY : Platform/Window.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -278,12 +350,21 @@ help:
 	@echo "... Core/Time.o"
 	@echo "... Core/Time.i"
 	@echo "... Core/Time.s"
+	@echo "... Engine/Application.o"
+	@echo "... Engine/Application.i"
+	@echo "... Engine/Application.s"
+	@echo "... Engine/GameLoop.o"
+	@echo "... Engine/GameLoop.i"
+	@echo "... Engine/GameLoop.s"
 	@echo "... Object/Component.o"
 	@echo "... Object/Component.i"
 	@echo "... Object/Component.s"
 	@echo "... Object/Object.o"
 	@echo "... Object/Object.i"
 	@echo "... Object/Object.s"
+	@echo "... Platform/Window.o"
+	@echo "... Platform/Window.i"
+	@echo "... Platform/Window.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

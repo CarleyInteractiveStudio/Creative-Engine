@@ -4,6 +4,6 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES =
 
-CXX_INCLUDES = -I/app
+CXX_INCLUDES = -I/app -isystem /usr/include/SDL2
 
 CXX_FLAGS = -std=c++17
