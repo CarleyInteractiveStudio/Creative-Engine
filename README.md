@@ -23,15 +23,27 @@ Hemos construido con éxito la base del motor. El estado actual incluye:
 
 El proyecto actualmente compila y ejecuta una aplicación que abre una ventana vacía y se cierra al recibir el evento de salida.
 
-## Próximos Pasos (Plan Actual)
+## Problemas Actuales y Próximos Pasos
 
-El plan actual está enfocado en construir las herramientas de edición. Sin embargo, estamos bloqueados por problemas técnicos en el entorno que impiden la descarga de dependencias como ImGui.
+Actualmente estamos bloqueados por problemas de compilación relacionados con las librerías `Glad` y `ImGui`. A pesar de varios intentos, no hemos podido resolver estos problemas.
 
-1.  **Resolver problemas de compilación con `Glad` y `ImGui`:**
-    -   Descargar y ubicar correctamente `khrplatform.h`.
-    -   Asegurar que el sistema de compilación `CMake` pueda encontrar y enlazar `Glad` e `ImGui` correctamente.
+### Problemas de Compilación
+
+- **Error de Inclusión de `khrplatform.h`:** La librería `Glad` requiere el archivo de cabecera `khrplatform.h`, que no se encuentra en el entorno de compilación.
+- **Intentos de Solución:**
+    1.  Se intentó instalar `libgl-dev`, que debería proveer el archivo, pero el problema persistió.
+    2.  Se intentó descargar `khrplatform.h` manualmente y ubicarlo en el directorio `Glad/KHR`, pero los problemas con el sistema de archivos impidieron esta acción.
+- **Hipótesis:** El problema principal parece ser una configuración incorrecta del entorno de compilación que impide la correcta localización de las dependencias y la manipulación de archivos.
+
+### Plan de Acción
+
+1.  **Resolver el Problema de Compilación:**
+    -   **Acción Inmediata:** Subir los cambios actuales al repositorio de Git. Esto permitirá que el entorno se actualice y, con suerte, resuelva los problemas de localización de archivos.
+    -   **Si el problema persiste:**
+        -   Investigar a fondo la configuración de `CMake` para asegurar que los directorios de inclusión (`include directories`) estén correctamente configurados.
+        -   Considerar el uso de un gestor de dependencias como `vcpkg` o `Conan` para manejar las librerías externas de forma más robusta.
 2.  **Integrar `ImGui` para la Interfaz del Editor:**
-    - Añadir ImGui como dependencia.
+    - Una vez resueltos los problemas de compilación, añadir ImGui como dependencia.
     - Inicializar ImGui en la `Application`.
     - Renderizar una ventana de demostración de ImGui.
 3.  **Implementar `InputManager`:**
