@@ -33,15 +33,17 @@ Actualmente estamos bloqueados por problemas de compilación relacionados con la
 - **Intentos de Solución:**
     1.  Se intentó instalar `libgl-dev`, que debería proveer el archivo, pero el problema persistió.
     2.  Se intentó descargar `khrplatform.h` manualmente y ubicarlo en el directorio `Glad/KHR`, pero los problemas con el sistema de archivos impidieron esta acción.
+    3.  Se ha creado el archivo `Glad/khrplatform.h` con el contenido correcto.
 - **Hipótesis:** El problema principal parece ser una configuración incorrecta del entorno de compilación que impide la correcta localización de las dependencias y la manipulación de archivos.
 
 ### Plan de Acción
 
 1.  **Resolver el Problema de Compilación:**
-    -   **Acción Inmediata:** Subir los cambios actuales al repositorio de Git. Esto permitirá que el entorno se actualice y, con suerte, resuelva los problemas de localización de archivos.
-    -   **Si el problema persiste:**
-        -   Investigar a fondo la configuración de `CMake` para asegurar que los directorios de inclusión (`include directories`) estén correctamente configurados.
-        -   Considerar el uso de un gestor de dependencias como `vcpkg` o `Conan` para manejar las librerías externas de forma más robusta.
+    -   **Acción Inmediata:** El usuario se encargará de crear el archivo `Glad/KHR/khrplatform.h` con el contenido correcto.
+    -   **Siguientes Pasos:**
+        -   Verificar que el archivo `khrplatform.h` existe en la ruta `Glad/KHR/`.
+        -   Asegurar que `Glad/glad.h` incluye `"KHR/khrplatform.h"` con la ruta correcta.
+        -   Eliminar el directorio `build` y volver a compilar el proyecto desde cero.
 2.  **Integrar `ImGui` para la Interfaz del Editor:**
     - Una vez resueltos los problemas de compilación, añadir ImGui como dependencia.
     - Inicializar ImGui en la `Application`.

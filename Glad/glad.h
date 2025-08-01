@@ -707,6 +707,10 @@
 #endif
 #define __gl_h_
 
+#include "khrplatform.h"
+
+#include "KHR/khrplatform.h"
+
 #include "KHR/khrplatform.h"
 
 #if defined(_WIN32) && !defined(APIENTRY) && !defined(__CYGWIN__) && !defined(__SCITECH_SNAP__)
