@@ -27,13 +27,16 @@ El proyecto actualmente compila y ejecuta una aplicación que abre una ventana v
 
 El plan actual está enfocado en construir las herramientas de edición. Sin embargo, estamos bloqueados por problemas técnicos en el entorno que impiden la descarga de dependencias como ImGui.
 
-1.  **Integrar `ImGui` para la Interfaz del Editor:**
+1.  **Resolver problemas de compilación con `Glad` y `ImGui`:**
+    -   Descargar y ubicar correctamente `khrplatform.h`.
+    -   Asegurar que el sistema de compilación `CMake` pueda encontrar y enlazar `Glad` e `ImGui` correctamente.
+2.  **Integrar `ImGui` para la Interfaz del Editor:**
     - Añadir ImGui como dependencia.
     - Inicializar ImGui en la `Application`.
     - Renderizar una ventana de demostración de ImGui.
-2.  **Implementar `InputManager`:**
+3.  **Implementar `InputManager`:**
     - Crear un gestor para procesar eventos de teclado y ratón desde SDL.
-3.  **Crear Componentes `Transform`:**
+4.  **Crear Componentes `Transform`:**
     - Implementar `Transform2DComponent` y/o `Transform3DComponent` para manejar la posición, rotación y escala de los `Objects`.
 
 ## Estructura de Archivos Actual
