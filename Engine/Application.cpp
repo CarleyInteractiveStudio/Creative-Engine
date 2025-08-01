@@ -6,6 +6,11 @@
 #include "Platform/Window.h"
 #include <SDL2/SDL.h>
 
+#include "imgui.h"
+#include "imgui_impl_sdl2.h"
+#include "imgui_impl_opengl3.h"
+#include "glad.h"
+
 namespace Creative {
 
 Application::Application() {
@@ -29,6 +34,20 @@ void Application::Init() {
 
     Logger::Info("Application initialized.");
     m_IsRunning = true;
+
+    // Setup Dear ImGui context
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+
+    // Setup Dear ImGui style
+    ImGui::StyleColorsDark();
+
+    // Setup Platform/Renderer backends
+    ImGui_ImplSDL2_InitForOpenGL(m_Window->GetNativeWindow(), m_Window->GetGLContext());
+    ImGui_ImplOpenGL3_Init("#version 130");
 }
 
 void Application::Run() {
@@ -39,6 +58,7 @@ void Application::Run() {
         // --- Event Processing ---
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
+            ImGui_ImplSDL2_ProcessEvent(&event);
             InputManager::ProcessEvent(event); // Forward event to InputManager
 
             if (event.type == SDL_QUIT) {
@@ -57,16 +77,30 @@ void Application::Run() {
         // (Game logic updates would go here)
 
         // --- Render ---
-        SDL_Surface* surface = SDL_GetWindowSurface(m_Window->GetNativeWindow());
-        if (surface) {
-            // Fill the surface with a solid color
-            SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 34, 34, 34));
-            SDL_UpdateWindowSurface(m_Window->GetNativeWindow());
-        }
+        // Start the Dear ImGui frame
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplSDL2_NewFrame();
+        ImGui::NewFrame();
+
+        ImGui::ShowDemoWindow();
+
+        // Rendering
+        ImGui::Render();
+        SDL_GL_MakeCurrent(m_Window->GetNativeWindow(), m_Window->GetGLContext());
+        glViewport(0, 0, (int)ImGui::GetIO().DisplaySize.x, (int)ImGui::GetIO().DisplaySize.y);
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        m_Window->SwapBuffers();
     }
 }
 
 void Application::Shutdown() {
+    // Cleanup
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
+    ImGui::DestroyContext();
+
     if (m_Window) {
         m_Window->Shutdown();
     }

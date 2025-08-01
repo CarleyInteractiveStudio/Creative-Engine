@@ -130,6 +130,19 @@ CreativeEngineCore/fast:
 .PHONY : CreativeEngineCore/fast
 
 #=============================================================================
+# Target rules for targets named glad
+
+# Build rule for target.
+glad: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glad
+.PHONY : glad
+
+# fast build rule for target.
+glad/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/build
+.PHONY : glad/fast
+
+#=============================================================================
 # Target rules for targets named CreativeEngine
 
 # Build rule for target.
@@ -238,6 +251,198 @@ Engine/GameLoop.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.s
 .PHONY : Engine/GameLoop.cpp.s
 
+Glad/glad.o: Glad/glad.c.o
+.PHONY : Glad/glad.o
+
+# target to build an object file
+Glad/glad.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/Glad/glad.c.o
+.PHONY : Glad/glad.c.o
+
+Glad/glad.i: Glad/glad.c.i
+.PHONY : Glad/glad.i
+
+# target to preprocess a source file
+Glad/glad.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/Glad/glad.c.i
+.PHONY : Glad/glad.c.i
+
+Glad/glad.s: Glad/glad.c.s
+.PHONY : Glad/glad.s
+
+# target to generate assembly for a file
+Glad/glad.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/Glad/glad.c.s
+.PHONY : Glad/glad.c.s
+
+ImGui/imgui.o: ImGui/imgui.cpp.o
+.PHONY : ImGui/imgui.o
+
+# target to build an object file
+ImGui/imgui.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.o
+.PHONY : ImGui/imgui.cpp.o
+
+ImGui/imgui.i: ImGui/imgui.cpp.i
+.PHONY : ImGui/imgui.i
+
+# target to preprocess a source file
+ImGui/imgui.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.i
+.PHONY : ImGui/imgui.cpp.i
+
+ImGui/imgui.s: ImGui/imgui.cpp.s
+.PHONY : ImGui/imgui.s
+
+# target to generate assembly for a file
+ImGui/imgui.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.s
+.PHONY : ImGui/imgui.cpp.s
+
+ImGui/imgui_draw.o: ImGui/imgui_draw.cpp.o
+.PHONY : ImGui/imgui_draw.o
+
+# target to build an object file
+ImGui/imgui_draw.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.o
+.PHONY : ImGui/imgui_draw.cpp.o
+
+ImGui/imgui_draw.i: ImGui/imgui_draw.cpp.i
+.PHONY : ImGui/imgui_draw.i
+
+# target to preprocess a source file
+ImGui/imgui_draw.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.i
+.PHONY : ImGui/imgui_draw.cpp.i
+
+ImGui/imgui_draw.s: ImGui/imgui_draw.cpp.s
+.PHONY : ImGui/imgui_draw.s
+
+# target to generate assembly for a file
+ImGui/imgui_draw.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.s
+.PHONY : ImGui/imgui_draw.cpp.s
+
+ImGui/imgui_impl_opengl3.o: ImGui/imgui_impl_opengl3.cpp.o
+.PHONY : ImGui/imgui_impl_opengl3.o
+
+# target to build an object file
+ImGui/imgui_impl_opengl3.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.o
+.PHONY : ImGui/imgui_impl_opengl3.cpp.o
+
+ImGui/imgui_impl_opengl3.i: ImGui/imgui_impl_opengl3.cpp.i
+.PHONY : ImGui/imgui_impl_opengl3.i
+
+# target to preprocess a source file
+ImGui/imgui_impl_opengl3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.i
+.PHONY : ImGui/imgui_impl_opengl3.cpp.i
+
+ImGui/imgui_impl_opengl3.s: ImGui/imgui_impl_opengl3.cpp.s
+.PHONY : ImGui/imgui_impl_opengl3.s
+
+# target to generate assembly for a file
+ImGui/imgui_impl_opengl3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.s
+.PHONY : ImGui/imgui_impl_opengl3.cpp.s
+
+ImGui/imgui_impl_sdl2.o: ImGui/imgui_impl_sdl2.cpp.o
+.PHONY : ImGui/imgui_impl_sdl2.o
+
+# target to build an object file
+ImGui/imgui_impl_sdl2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.o
+.PHONY : ImGui/imgui_impl_sdl2.cpp.o
+
+ImGui/imgui_impl_sdl2.i: ImGui/imgui_impl_sdl2.cpp.i
+.PHONY : ImGui/imgui_impl_sdl2.i
+
+# target to preprocess a source file
+ImGui/imgui_impl_sdl2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.i
+.PHONY : ImGui/imgui_impl_sdl2.cpp.i
+
+ImGui/imgui_impl_sdl2.s: ImGui/imgui_impl_sdl2.cpp.s
+.PHONY : ImGui/imgui_impl_sdl2.s
+
+# target to generate assembly for a file
+ImGui/imgui_impl_sdl2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.s
+.PHONY : ImGui/imgui_impl_sdl2.cpp.s
+
+ImGui/imgui_tables.o: ImGui/imgui_tables.cpp.o
+.PHONY : ImGui/imgui_tables.o
+
+# target to build an object file
+ImGui/imgui_tables.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.o
+.PHONY : ImGui/imgui_tables.cpp.o
+
+ImGui/imgui_tables.i: ImGui/imgui_tables.cpp.i
+.PHONY : ImGui/imgui_tables.i
+
+# target to preprocess a source file
+ImGui/imgui_tables.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.i
+.PHONY : ImGui/imgui_tables.cpp.i
+
+ImGui/imgui_tables.s: ImGui/imgui_tables.cpp.s
+.PHONY : ImGui/imgui_tables.s
+
+# target to generate assembly for a file
+ImGui/imgui_tables.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.s
+.PHONY : ImGui/imgui_tables.cpp.s
+
+ImGui/imgui_widgets.o: ImGui/imgui_widgets.cpp.o
+.PHONY : ImGui/imgui_widgets.o
+
+# target to build an object file
+ImGui/imgui_widgets.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.o
+.PHONY : ImGui/imgui_widgets.cpp.o
+
+ImGui/imgui_widgets.i: ImGui/imgui_widgets.cpp.i
+.PHONY : ImGui/imgui_widgets.i
+
+# target to preprocess a source file
+ImGui/imgui_widgets.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.i
+.PHONY : ImGui/imgui_widgets.cpp.i
+
+ImGui/imgui_widgets.s: ImGui/imgui_widgets.cpp.s
+.PHONY : ImGui/imgui_widgets.s
+
+# target to generate assembly for a file
+ImGui/imgui_widgets.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.s
+.PHONY : ImGui/imgui_widgets.cpp.s
+
+Input/InputManager.o: Input/InputManager.cpp.o
+.PHONY : Input/InputManager.o
+
+# target to build an object file
+Input/InputManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.o
+.PHONY : Input/InputManager.cpp.o
+
+Input/InputManager.i: Input/InputManager.cpp.i
+.PHONY : Input/InputManager.i
+
+# target to preprocess a source file
+Input/InputManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.i
+.PHONY : Input/InputManager.cpp.i
+
+Input/InputManager.s: Input/InputManager.cpp.s
+.PHONY : Input/InputManager.s
+
+# target to generate assembly for a file
+Input/InputManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.s
+.PHONY : Input/InputManager.cpp.s
+
 Object/Component.o: Object/Component.cpp.o
 .PHONY : Object/Component.o
 
@@ -344,6 +549,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... CreativeEngine"
 	@echo "... CreativeEngineCore"
+	@echo "... glad"
 	@echo "... Core/Logger.o"
 	@echo "... Core/Logger.i"
 	@echo "... Core/Logger.s"
@@ -356,6 +562,30 @@ help:
 	@echo "... Engine/GameLoop.o"
 	@echo "... Engine/GameLoop.i"
 	@echo "... Engine/GameLoop.s"
+	@echo "... Glad/glad.o"
+	@echo "... Glad/glad.i"
+	@echo "... Glad/glad.s"
+	@echo "... ImGui/imgui.o"
+	@echo "... ImGui/imgui.i"
+	@echo "... ImGui/imgui.s"
+	@echo "... ImGui/imgui_draw.o"
+	@echo "... ImGui/imgui_draw.i"
+	@echo "... ImGui/imgui_draw.s"
+	@echo "... ImGui/imgui_impl_opengl3.o"
+	@echo "... ImGui/imgui_impl_opengl3.i"
+	@echo "... ImGui/imgui_impl_opengl3.s"
+	@echo "... ImGui/imgui_impl_sdl2.o"
+	@echo "... ImGui/imgui_impl_sdl2.i"
+	@echo "... ImGui/imgui_impl_sdl2.s"
+	@echo "... ImGui/imgui_tables.o"
+	@echo "... ImGui/imgui_tables.i"
+	@echo "... ImGui/imgui_tables.s"
+	@echo "... ImGui/imgui_widgets.o"
+	@echo "... ImGui/imgui_widgets.i"
+	@echo "... ImGui/imgui_widgets.s"
+	@echo "... Input/InputManager.o"
+	@echo "... Input/InputManager.i"
+	@echo "... Input/InputManager.s"
 	@echo "... Object/Component.o"
 	@echo "... Object/Component.i"
 	@echo "... Object/Component.s"

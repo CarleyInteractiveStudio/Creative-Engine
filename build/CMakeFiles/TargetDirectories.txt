@@ -1,4 +1,5 @@
 /app/build/CMakeFiles/CreativeEngineCore.dir
+/app/build/CMakeFiles/glad.dir
 /app/build/CMakeFiles/CreativeEngine.dir
 /app/build/CMakeFiles/edit_cache.dir
 /app/build/CMakeFiles/rebuild_cache.dir

@@ -125,10 +125,108 @@ CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/Engine/GameLoop.cpp -o CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.s
 
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.o: /app/ImGui/imgui.cpp
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.o -c /app/ImGui/imgui.cpp
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/ImGui/imgui.cpp > CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.i
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/ImGui/imgui.cpp -o CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.s
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.o: /app/ImGui/imgui_draw.cpp
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.o -c /app/ImGui/imgui_draw.cpp
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/ImGui/imgui_draw.cpp > CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.i
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/ImGui/imgui_draw.cpp -o CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.s
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.o: /app/ImGui/imgui_impl_opengl3.cpp
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.o -c /app/ImGui/imgui_impl_opengl3.cpp
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/ImGui/imgui_impl_opengl3.cpp > CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.i
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/ImGui/imgui_impl_opengl3.cpp -o CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.s
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.o: /app/ImGui/imgui_impl_sdl2.cpp
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.o -c /app/ImGui/imgui_impl_sdl2.cpp
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/ImGui/imgui_impl_sdl2.cpp > CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.i
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/ImGui/imgui_impl_sdl2.cpp -o CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.s
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.o: /app/ImGui/imgui_tables.cpp
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.o -c /app/ImGui/imgui_tables.cpp
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/ImGui/imgui_tables.cpp > CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.i
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/ImGui/imgui_tables.cpp -o CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.s
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.o: /app/ImGui/imgui_widgets.cpp
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.o -c /app/ImGui/imgui_widgets.cpp
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/ImGui/imgui_widgets.cpp > CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.i
+
+CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/ImGui/imgui_widgets.cpp -o CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.s
+
+CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
+CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.o: /app/Input/InputManager.cpp
+CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.o -c /app/Input/InputManager.cpp
+
+CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/Input/InputManager.cpp > CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.i
+
+CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/Input/InputManager.cpp -o CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.s
+
 CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
 CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o: /app/Object/Component.cpp
 CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o -c /app/Object/Component.cpp
 
 CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.i: cmake_force
@@ -142,7 +240,7 @@ CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.s: cmake_force
 CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
 CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o: /app/Object/Object.cpp
 CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o -c /app/Object/Object.cpp
 
 CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.i: cmake_force
@@ -156,7 +254,7 @@ CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.s: cmake_force
 CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o: CMakeFiles/CreativeEngineCore.dir/flags.make
 CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o: /app/Platform/Window.cpp
 CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o: CMakeFiles/CreativeEngineCore.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o -MF CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o.d -o CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o -c /app/Platform/Window.cpp
 
 CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.i: cmake_force
@@ -173,6 +271,13 @@ CreativeEngineCore_OBJECTS = \
 "CMakeFiles/CreativeEngineCore.dir/Core/Time.cpp.o" \
 "CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o" \
 "CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o" \
+"CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.o" \
+"CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.o" \
+"CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.o" \
+"CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.o" \
+"CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.o" \
+"CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.o" \
+"CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.o" \
 "CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o" \
 "CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o" \
 "CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o"
@@ -184,12 +289,19 @@ libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Core/Logger.cpp.o
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Core/Time.cpp.o
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Engine/Application.cpp.o
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Engine/GameLoop.cpp.o
+libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/ImGui/imgui.cpp.o
+libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_draw.cpp.o
+libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_opengl3.cpp.o
+libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_impl_sdl2.cpp.o
+libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_tables.cpp.o
+libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/ImGui/imgui_widgets.cpp.o
+libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Input/InputManager.cpp.o
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Object/Component.cpp.o
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Object/Object.cpp.o
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/Platform/Window.cpp.o
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/build.make
 libCreativeEngineCore.a: CMakeFiles/CreativeEngineCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libCreativeEngineCore.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX static library libCreativeEngineCore.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/CreativeEngineCore.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CreativeEngineCore.dir/link.txt --verbose=$(VERBOSE)
 

@@ -64,6 +64,7 @@ CMAKE_BINARY_DIR = /app/build
 
 # The main recursive "all" target.
 all: CMakeFiles/CreativeEngineCore.dir/all
+all: CMakeFiles/glad.dir/all
 all: CMakeFiles/CreativeEngine.dir/all
 .PHONY : all
 
@@ -73,6 +74,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/CreativeEngineCore.dir/clean
+clean: CMakeFiles/glad.dir/clean
 clean: CMakeFiles/CreativeEngine.dir/clean
 .PHONY : clean
 
@@ -80,15 +82,15 @@ clean: CMakeFiles/CreativeEngine.dir/clean
 # Target rules for target CMakeFiles/CreativeEngineCore.dir
 
 # All Build rule for target.
-CMakeFiles/CreativeEngineCore.dir/all:
+CMakeFiles/CreativeEngineCore.dir/all: CMakeFiles/glad.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngineCore.dir/build.make CMakeFiles/CreativeEngineCore.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/app/build/CMakeFiles --progress-num=3,4,5,6,7,8,9,10 "Built target CreativeEngineCore"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/app/build/CMakeFiles --progress-num=3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Built target CreativeEngineCore"
 .PHONY : CMakeFiles/CreativeEngineCore.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/CreativeEngineCore.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /app/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /app/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/CreativeEngineCore.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /app/build/CMakeFiles 0
 .PHONY : CMakeFiles/CreativeEngineCore.dir/rule
@@ -103,10 +105,37 @@ CMakeFiles/CreativeEngineCore.dir/clean:
 .PHONY : CMakeFiles/CreativeEngineCore.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/glad.dir
+
+# All Build rule for target.
+CMakeFiles/glad.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/app/build/CMakeFiles --progress-num=18,19 "Built target glad"
+.PHONY : CMakeFiles/glad.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/glad.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /app/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/glad.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /app/build/CMakeFiles 0
+.PHONY : CMakeFiles/glad.dir/rule
+
+# Convenience name for target.
+glad: CMakeFiles/glad.dir/rule
+.PHONY : glad
+
+# clean rule for target.
+CMakeFiles/glad.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/clean
+.PHONY : CMakeFiles/glad.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/CreativeEngine.dir
 
 # All Build rule for target.
 CMakeFiles/CreativeEngine.dir/all: CMakeFiles/CreativeEngineCore.dir/all
+CMakeFiles/CreativeEngine.dir/all: CMakeFiles/glad.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngine.dir/build.make CMakeFiles/CreativeEngine.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CreativeEngine.dir/build.make CMakeFiles/CreativeEngine.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/app/build/CMakeFiles --progress-num=1,2 "Built target CreativeEngine"
@@ -114,7 +143,7 @@ CMakeFiles/CreativeEngine.dir/all: CMakeFiles/CreativeEngineCore.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/CreativeEngine.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /app/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /app/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/CreativeEngine.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /app/build/CMakeFiles 0
 .PHONY : CMakeFiles/CreativeEngine.dir/rule

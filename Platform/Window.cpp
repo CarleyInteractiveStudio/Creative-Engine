@@ -1,6 +1,7 @@
 #include "Window.h"
 #include "Core/Logger.h"
 #include <SDL2/SDL.h>
+#include "glad.h"
 
 namespace Creative {
 
@@ -22,6 +23,15 @@ bool Window::Init() {
         return false;
     }
 
+    // Set OpenGL attributes
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+    SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+
+
     // Create an SDL Window
     m_SdlWindow = SDL_CreateWindow(
         m_Title.c_str(),
@@ -29,7 +39,7 @@ bool Window::Init() {
         SDL_WINDOWPOS_CENTERED,
         m_Width,
         m_Height,
-        SDL_WINDOW_SHOWN // We will add graphics API flags later (e.g., SDL_WINDOW_OPENGL)
+        SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN
     );
 
     if (m_SdlWindow == nullptr) {
@@ -38,11 +48,30 @@ bool Window::Init() {
         return false;
     }
 
-    Logger::Info("Window created successfully.");
+    m_GlContext = SDL_GL_CreateContext(m_SdlWindow);
+    if (m_GlContext == nullptr) {
+        Logger::Error("SDL_GL_CreateContext Error: " + std::string(SDL_GetError()));
+        SDL_DestroyWindow(m_SdlWindow);
+        SDL_Quit();
+        return false;
+    }
+
+    // Initialize Glad
+    if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) {
+        Logger::Error("Failed to initialize Glad");
+        return false;
+    }
+
+    Logger::Info("Window and OpenGL context created successfully.");
     return true;
 }
 
 void Window::Shutdown() {
+    if (m_GlContext) {
+        SDL_GL_DeleteContext(m_GlContext);
+        m_GlContext = nullptr;
+    }
+
     if (m_SdlWindow != nullptr) {
         SDL_DestroyWindow(m_SdlWindow);
         m_SdlWindow = nullptr;
@@ -53,8 +82,7 @@ void Window::Shutdown() {
 }
 
 void Window::SwapBuffers() {
-    // This will be used later when we have a graphics context (e.g., OpenGL).
-    // For OpenGL, this would call SDL_GL_SwapWindow(m_SdlWindow);
+    SDL_GL_SwapWindow(m_SdlWindow);
 }
 
 } // namespace Creative
