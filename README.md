@@ -1,9 +1,9 @@
 # Creative-Engine
 Motor de videojuego en desarrollo.
 
-## Progreso Actual (Hasta el 31 de Julio, 2025)
+## Progreso Actual (Hasta el 1 de Agosto, 2025)
 
-Hemos construido con éxito la base del motor. El estado actual incluye:
+Hemos construido con éxito la base del motor y hemos integrado la librería de interfaz gráfica ImGui. El estado actual incluye:
 
 - **Estructura de Proyecto Modular:** Se ha creado la estructura de directorios principal para albergar los diferentes módulos del motor (`Core`, `Engine`, `Object`, `Platform`, etc.).
 - **Módulos `Core`:**
@@ -17,41 +17,30 @@ Hemos construido con éxito la base del motor. El estado actual incluye:
   - `GameLoop`: Estructura básica para el futuro bucle principal.
 - **Plataforma y Ventana:**
   - Se ha integrado la librería **SDL2** para la gestión de ventanas y eventos.
-  - La clase `Window` en `Platform` abstrae la creación de la ventana.
+  - La clase `Window` en `Platform` abstrae la creación de la ventana y ahora también gestiona un contexto de OpenGL.
 - **Sistema de Compilación `CMake`:**
   - Un `CMakeLists.txt` funcional que compila todos los módulos en una librería estática (`CreativeEngineCore`) y un ejecutable.
+- **Integración de ImGui:**
+  - Se ha integrado **ImGui** para la creación de interfaces de usuario.
+  - El motor ahora renderiza la ventana de demostración de ImGui.
 
-El proyecto actualmente compila y ejecuta una aplicación que abre una ventana vacía y se cierra al recibir el evento de salida.
+El proyecto compila y ejecuta una aplicación que abre una ventana y muestra la interfaz de ImGui.
 
-## Problemas Actuales y Próximos Pasos
+## Próximos Pasos
 
-Actualmente estamos bloqueados por problemas de compilación relacionados con las librerías `Glad` y `ImGui`. A pesar de varios intentos, no hemos podido resolver estos problemas.
+Ahora que la base del motor y la interfaz de usuario están funcionando, los siguientes pasos son:
 
-### Problemas de Compilación
-
-- **Error de Inclusión de `khrplatform.h`:** La librería `Glad` requiere el archivo de cabecera `khrplatform.h`, que no se encuentra en el entorno de compilación.
-- **Intentos de Solución:**
-    1.  Se intentó instalar `libgl-dev`, que debería proveer el archivo, pero el problema persistió.
-    2.  Se intentó descargar `khrplatform.h` manualmente y ubicarlo en el directorio `Glad/KHR`, pero los problemas con el sistema de archivos impidieron esta acción.
-    3.  Se ha creado el archivo `Glad/khrplatform.h` con el contenido correcto.
-- **Hipótesis:** El problema principal parece ser una configuración incorrecta del entorno de compilación que impide la correcta localización de las dependencias y la manipulación de archivos.
-
-### Plan de Acción
-
-1.  **Resolver el Problema de Compilación:**
-    -   **Acción Inmediata:** El usuario se encargará de crear el archivo `Glad/KHR/khrplatform.h` con el contenido correcto.
-    -   **Siguientes Pasos:**
-        -   Verificar que el archivo `khrplatform.h` existe en la ruta `Glad/KHR/`.
-        -   Asegurar que `Glad/glad.h` incluye `"KHR/khrplatform.h"` con la ruta correcta.
-        -   Eliminar el directorio `build` y volver a compilar el proyecto desde cero.
-2.  **Integrar `ImGui` para la Interfaz del Editor:**
-    - Una vez resueltos los problemas de compilación, añadir ImGui como dependencia.
-    - Inicializar ImGui en la `Application`.
-    - Renderizar una ventana de demostración de ImGui.
-3.  **Implementar `InputManager`:**
-    - Crear un gestor para procesar eventos de teclado y ratón desde SDL.
-4.  **Crear Componentes `Transform`:**
+1.  **Implementar `InputManager`:**
+    - Crear un gestor para procesar eventos de teclado y ratón desde SDL y proveer una API sencilla para consultar el estado de los inputs.
+2.  **Crear Componentes `Transform`:**
     - Implementar `Transform2DComponent` y/o `Transform3DComponent` para manejar la posición, rotación y escala de los `Objects`.
+3.  **Desarrollar el Editor:**
+    - Empezar a diseñar y construir las ventanas del editor utilizando ImGui.
+    - Crear un "Viewport" para visualizar la escena del juego.
+    - Implementar un inspector de `Objects` para ver y modificar sus componentes.
+4.  **Sistema de Renderizado:**
+    - Abstraer el renderizado en una clase `Renderer` para no tener código de OpenGL directamente en la clase `Application`.
+    - Empezar a implementar el renderizado de primitivas y, eventualmente, de modelos 3D.
 
 ## Estructura de Archivos Actual
 
