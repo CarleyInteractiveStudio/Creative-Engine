@@ -1,5 +1,5 @@
 # Sets the minimum version of CMake required to build this project.
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.11)
 
 # Declares the project name, version, and language.
 project(CreativeEngine VERSION 1.0 LANGUAGES CXX C)
@@ -8,6 +8,19 @@ project(CreativeEngine VERSION 1.0 LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+
+# --- Dependencies ---
+# Use FetchContent to automatically download and build dependencies.
+include(FetchContent)
+
+# Fetch SDL2
+FetchContent_Declare(
+    SDL2
+    GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
+    GIT_TAG        release-2.28.5 # Use a specific, stable version
+)
+FetchContent_MakeAvailable(SDL2)
+
 
 # Gather all source files for our core engine library.
 # Using GLOB is convenient for now, but for larger projects,
@@ -48,9 +61,6 @@ target_link_libraries(CreativeEngineCore PUBLIC SDL2::SDL2 glad)
 
 # Creates an executable named "CreativeEngine" from main.cpp.
 add_executable(CreativeEngine main.cpp)
-
-# Find external packages
-find_package(SDL2 REQUIRED)
 
 # Links our executable against the core engine library and other dependencies.
 # This makes the classes and functions in our library available to the executable.
