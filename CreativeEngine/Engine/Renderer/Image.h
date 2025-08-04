@@ -35,6 +35,7 @@ public:
 
     unsigned int GetWidth() const { return m_Width; }
     unsigned int GetHeight() const { return m_Height; }
+    const Color* GetData() const { return m_PixelData.data(); }
 
 private:
     unsigned int m_Width;

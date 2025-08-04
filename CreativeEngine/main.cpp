@@ -8,6 +8,12 @@
 #include "Engine/MatterSystem/Laws/SpriteLaw.h"
 #include "Engine/MatterSystem/Laws/AnimationLaw.h"
 #include "Engine/Platform/Window.h"
+#include <sstream>
+#include <iomanip>
+
+void RunHeadless(Creative::SceneSpace& scene, Creative::Renderer2D& renderer, Creative::Image& image);
+void RunInteractive(Creative::Window& window, Creative::SceneSpace& scene, Creative::Renderer2D& renderer, Creative::Image& image);
+
 
 int main(int argc, char** argv)
 {
@@ -52,22 +58,57 @@ int main(int argc, char** argv)
 
     // --- Main Loop ---
     Creative::Log::Core_Info("Starting main loop...");
-    while (window->IsOpen())
+    if (window->IsOpen())
     {
-        // 1. Process OS messages
-        window->Update();
-
-        // 2. Update scene logic (this will call OnUpdate on all laws, including AnimationLaw)
-        scene->Update(0.016f);
-
-        // 3. Render the scene to our image buffer
-        renderer->Render(*scene, *image);
-
-        // 4. Draw the image buffer to the window
-        window->DrawBuffer(*image);
+        RunInteractive(*window, *scene, *renderer, *image);
+    }
+    else
+    {
+        RunHeadless(*scene, *renderer, *image);
     }
 
     Creative::Log::Core_Info("Shutting down Creative Engine.");
 
     return 0;
+}
+
+void RunInteractive(Creative::Window& window, Creative::SceneSpace& scene, Creative::Renderer2D& renderer, Creative::Image& image)
+{
+    while (window.IsOpen())
+    {
+        // 1. Process OS messages
+        window.Update();
+
+        // 2. Update scene logic (this will call OnUpdate on all laws, including AnimationLaw)
+        scene.Update(0.016f);
+
+        // 3. Render the scene to our image buffer
+        renderer.Render(scene, image);
+
+        // 4. Draw the image buffer to the window
+        window.DrawBuffer(image);
+    }
+}
+
+void RunHeadless(Creative::SceneSpace& scene, Creative::Renderer2D& renderer, Creative::Image& image)
+{
+    Creative::Log::Core_Warn("Window could not be opened. Running in headless mode.");
+    constexpr int frameCount = 20;
+    constexpr float deltaTime = 0.05f; // Use a slightly larger delta time to see animation progress
+    Creative::Log::Core_Info("Rendering " + std::to_string(frameCount) + " frames...");
+
+    for (int i = 0; i < frameCount; ++i)
+    {
+        // 1. Update scene logic
+        scene.Update(deltaTime);
+
+        // 2. Render the scene to our image buffer
+        renderer.Render(scene, image);
+
+        // 3. Save the buffer to a PPM file
+        std::stringstream ss;
+        ss << "frame_" << std::setw(3) << std::setfill('0') << i << ".ppm";
+        image.Save(ss.str());
+    }
+    Creative::Log::Core_Info("Headless rendering complete.");
 }
