@@ -17,17 +17,6 @@ SceneSpace::~SceneSpace()
     Log::Core_Info("SceneSpace destroyed.");
 }
 
-Matter* SceneSpace::CreateMatter(const std::string& name)
-{
-    // Create a new Matter object owned by a unique_ptr.
-    Scope<Matter> newMatter = CreateScope<Matter>(name);
-    // Get the raw pointer to return to the user.
-    Matter* rawPtr = newMatter.get();
-    // Add the new Matter to our list, transferring ownership to the vector.
-    m_Matters.push_back(std::move(newMatter));
-    return rawPtr;
-}
-
 void SceneSpace::DestroyMatter(Matter* matter)
 {
     // Find the unique_ptr that manages the given raw pointer and erase it from the vector.

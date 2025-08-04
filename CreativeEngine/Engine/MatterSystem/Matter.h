@@ -17,7 +17,7 @@ class Matter
 {
 public:
     Matter(std::string name = "Matter");
-    ~Matter();
+    virtual ~Matter();
 
     // This is called by SceneSpace each frame. It, in turn, calls Update on all its Laws.
     void Update(float deltaTime);

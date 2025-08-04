@@ -1,4 +1,5 @@
 #include "Renderer2D.h"
+#include "Camera2D.h" // Include the new camera header
 
 #include "Engine/SceneSpace/SceneSpace.h"
 #include "Engine/MatterSystem/Laws/AppearanceLaw.h"
@@ -13,57 +14,88 @@ Renderer2D::Renderer2D()
 
 void Renderer2D::Render(SceneSpace& scene, Image& targetImage)
 {
-    // First, clear the image to a background color.
+    // 1. Find the active camera in the scene.
+    Camera2D* activeCamera = nullptr;
+    for (const auto& matter : scene.GetMatters())
+    {
+        // Try to cast the Matter pointer to a Camera2D pointer.
+        if (auto cam = dynamic_cast<Camera2D*>(matter.get()))
+        {
+            if (cam->isPrimary)
+            {
+                activeCamera = cam;
+                break; // Found it, stop searching.
+            }
+        }
+    }
+
+    // If there's no camera, we can't render anything.
+    if (!activeCamera)
+    {
+        Log::Core_Warn("Renderer2D: No primary camera found in the scene. Cannot render.");
+        targetImage.Clear({255, 0, 255}); // Draw magenta to indicate an error.
+        return;
+    }
+
+    // 2. Calculate transformation values from the camera.
+    // This determines how many pixels one "world unit" is.
+    const float pixelsPerUnit = static_cast<float>(targetImage.GetHeight()) / activeCamera->orthographicSize;
+    const Vec2 cameraPos = { activeCamera->position.x, activeCamera->position.y };
+
+    // 3. Clear the image and render all visible objects.
     targetImage.Clear({ 15, 15, 20 }); // A nice dark blue
 
-    // Get all the Matter objects from the scene.
-    const auto& matters = scene.GetMatters();
-
-    // Iterate through every Matter.
-    for (const auto& matter : matters)
+    for (const auto& matter : scene.GetMatters())
     {
-        // Check if this Matter has an AppearanceLaw.
-        AppearanceLaw* appearance = matter->GetLaw<AppearanceLaw>();
-        if (appearance)
+        // Don't try to draw the camera itself.
+        if (matter.get() == activeCamera)
         {
-            // If it does, draw it! We construct a Vec2 from the Matter's Vec3 position.
-            DrawQuad(targetImage, {matter->position.x, matter->position.y}, appearance->size, appearance->color);
+            continue;
+        }
+
+        if (auto appearance = matter->GetLaw<AppearanceLaw>())
+        {
+            // 4. Transform object's world position to camera-relative coordinates.
+            const Vec2 objectPos = { matter->position.x, matter->position.y };
+            const Vec2 relativePos = { objectPos.x - cameraPos.x, objectPos.y - cameraPos.y };
+
+            // 5. Scale the position and size by the camera's zoom level (pixelsPerUnit).
+            const Vec2 screenPos = { relativePos.x * pixelsPerUnit, relativePos.y * pixelsPerUnit };
+            const Vec2 screenSize = { appearance->size.x * pixelsPerUnit, appearance->size.y * pixelsPerUnit };
+
+            // 6. Draw the final, transformed quad.
+            DrawQuad(targetImage, screenPos, screenSize, appearance->color);
         }
     }
 }
 
-void Renderer2D::DrawQuad(Image& image, const Vec2& position, const Vec2& size, const Color& color)
+void Renderer2D::DrawQuad(Image& image, const Vec2& screenPos, const Vec2& screenSize, const Color& color)
 {
-    // This is a very simple quad drawing function.
-    // It treats the position as the center of the quad.
-    // It doesn't handle rotation or camera transformations yet.
+    // The incoming `screenPos` is now in pixels, relative to the center of the screen.
+    // The `screenSize` is also in pixels.
 
-    // Calculate the top-left and bottom-right corners of the rectangle.
-    // We cast to int because we are drawing to discrete pixels.
-    int halfWidth = static_cast<int>(size.x / 2.0f);
-    int halfHeight = static_cast<int>(size.y / 2.0f);
+    const int halfWidth = static_cast<int>(screenSize.x / 2.0f);
+    const int halfHeight = static_cast<int>(screenSize.y / 2.0f);
 
-    // We need to account for the image's coordinate system (0,0 is top-left)
-    // and our world's coordinate system (0,0 could be center of the screen).
-    // For now, let's assume a simple mapping where the world center is the image center.
-    int screenCenterX = image.GetWidth() / 2;
-    int screenCenterY = image.GetHeight() / 2;
+    // Find the center of the image.
+    const int screenCenterX = image.GetWidth() / 2;
+    const int screenCenterY = image.GetHeight() / 2;
 
-    int centerX = screenCenterX + static_cast<int>(position.x);
-    int centerY = screenCenterY - static_cast<int>(position.y); // Y is inverted in screen coordinates
+    // Calculate the final pixel coordinates for the quad's center.
+    // Y is inverted because in our world +Y is up, but in image coordinates +Y is down.
+    const int centerX = screenCenterX + static_cast<int>(screenPos.x);
+    const int centerY = screenCenterY - static_cast<int>(screenPos.y);
 
-    int startX = centerX - halfWidth;
-    int endX = centerX + halfWidth;
-    int startY = centerY - halfHeight;
-    int endY = centerY + halfHeight;
+    const int startX = centerX - halfWidth;
+    const int endX = centerX + halfWidth;
+    const int startY = centerY - halfHeight;
+    const int endY = centerY + halfHeight;
 
     // Loop through every pixel of the quad's bounding box and set its color.
     for (int y = startY; y < endY; ++y)
     {
         for (int x = startX; x < endX; ++x)
         {
-            // We must still check bounds in case the quad is partially off-screen.
-            // The SetPixel method already does this, so we don't need to repeat it here.
             image.SetPixel(x, y, color);
         }
     }
