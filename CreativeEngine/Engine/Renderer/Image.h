@@ -16,7 +16,10 @@ struct Color
 class Image
 {
 public:
+    // Creates a blank image with the given dimensions.
     Image(unsigned int width, unsigned int height);
+    // Loads an image from a file.
+    Image(const std::string& filepath);
 
     // Sets the color of a single pixel at the given coordinates.
     // (0,0) is the top-left corner.

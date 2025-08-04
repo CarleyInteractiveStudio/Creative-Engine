@@ -14,6 +14,63 @@ Image::Image(unsigned int width, unsigned int height)
     Log::Core_Trace("Created an Image with dimensions " + std::to_string(width) + "x" + std::to_string(height));
 }
 
+Image::Image(const std::string& filepath)
+    : m_Width(0)
+    , m_Height(0)
+{
+    std::ifstream file(filepath);
+    if (!file.is_open())
+    {
+        Log::Core_Error("Failed to open image file: " + filepath);
+        return;
+    }
+
+    std::string magic;
+    file >> magic;
+    if (magic != "P3")
+    {
+        Log::Core_Error("Invalid PPM file format. Only P3 (ASCII) is supported. File: " + filepath);
+        return;
+    }
+
+    int maxColorValue;
+    file >> m_Width >> m_Height >> maxColorValue;
+
+    if (m_Width == 0 || m_Height == 0)
+    {
+        Log::Core_Error("Image has zero dimensions: " + filepath);
+        m_Width = 0;
+        m_Height = 0;
+        return;
+    }
+
+    m_PixelData.resize(m_Width * m_Height);
+
+    int r, g, b;
+    for (unsigned int i = 0; i < m_Width * m_Height; ++i)
+    {
+        if (file >> r >> g >> b)
+        {
+            m_PixelData[i].r = static_cast<unsigned char>(r);
+            m_PixelData[i].g = static_cast<unsigned char>(g);
+            m_PixelData[i].b = static_cast<unsigned char>(b);
+        }
+        else
+        {
+            Log::Core_Error("Failed to read pixel data from: " + filepath + ". File may be truncated.");
+            m_Width = 0;
+            m_Height = 0;
+            m_PixelData.clear();
+            break;
+        }
+    }
+
+    file.close();
+    if (m_Width > 0) {
+        Log::Core_Info("Successfully loaded image: " + filepath + " (" + std::to_string(m_Width) + "x" + std::to_string(m_Height) + ")");
+    }
+}
+
 void Image::SetPixel(unsigned int x, unsigned int y, const Color& color)
 {
     // Basic bounds checking to prevent writing outside the buffer.

@@ -28,6 +28,8 @@ SRCS = main.cpp \
        Engine/Platform/Linux/Input.cpp \
        Engine/Platform/Timer.cpp \
        Engine/MatterSystem/Matter.cpp \
+       Engine/MatterSystem/Laws/SpriteLaw.cpp \
+       Engine/MatterSystem/Laws/AnimationLaw.cpp \
        Engine/SceneSpace/SceneSpace.cpp \
        Engine/Renderer/Image.cpp \
        Engine/Renderer/Renderer2D.cpp

@@ -21,8 +21,17 @@ public:
     void Render(SceneSpace& scene, Image& targetImage);
 
 private:
-    // A helper function to draw a simple, solid-colored rectangle.
-    void DrawQuad(Image& image, const Vec2& position, const Vec2& size, const Color& color);
+    // --- Solid Color Rendering ---
+    // Draws a solid-colored, rotated rectangle.
+    void DrawRotatedQuad(Image& targetImage, const Vec2& centerPos, const Vec2& size, float angleRad, const Color& color);
+    // Fills a solid-colored triangle.
+    void FillTriangle(Image& targetImage, Vec2 p0, Vec2 p1, Vec2 p2, const Color& color);
+
+    // --- Textured Rendering ---
+    // Draws a textured, rotated rectangle, allowing for a sub-rectangle of the texture to be used.
+    void DrawRotatedQuad(Image& targetImage, const Vec2& centerPos, const Vec2& size, float angleRad, const Image& texture, const Vec2& uvOffset, const Vec2& uvScale);
+    // Fills a textured triangle using barycentric interpolation for UVs.
+    void FillTriangle(Image& targetImage, Vec2 p0, Vec2 p1, Vec2 p2, Vec2 uv0, Vec2 uv1, Vec2 uv2, const Image& texture);
 };
 
 } // namespace Creative
