@@ -198,3 +198,25 @@ Creative Engine estará dividido en **capas** que trabajan juntas pero son modul
 
 ---
 
+## 🚀 Estado del Desarrollo
+
+Aquí se documenta el progreso del desarrollo a través de las fases definidas.
+
+*   [x] **Fase 0 — Fundamentos**: Completada.
+    *   Se ha establecido la estructura de carpetas.
+    *   Se ha creado la capa de plataforma para Linux (X11) desde cero.
+    *   Se ha implementado el núcleo con Log, Timer y un sistema de memoria básico.
+    *   Se ha configurado un `Makefile` para la compilación.
+
+*   [x] **Fase 1 — Matter y Laws**: Completada.
+    *   Se ha diseñado e implementado el sistema `Matter` (objetos).
+    *   Se ha diseñado la clase base `Law` (componentes).
+    *   Se ha implementado el `SceneSpace` para gestionar las escenas.
+    *   El sistema es funcional y ha sido probado en modo "headless".
+
+*   [ ] **Fase 2 — Renderizado**: En progreso...
+*   [ ] **Fase 3 — Física y animación**: Pendiente.
+*   [ ] **Fase 4 — Scripting y editor**: Pendiente.
+*   [ ] **Fase 5 — Build y optimización**: Pendiente.
+
+---
