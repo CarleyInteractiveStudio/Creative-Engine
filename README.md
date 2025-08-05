@@ -147,10 +147,28 @@ To get started, you will need to have the following installed:
 *   Make
 *   SDL2
 
-Once you have these installed, you can build the engine by running the following command:
+Once you have these installed, you can build the engine for Linux by running the following command:
 
 ```
 make
+```
+
+### Building for Windows (Cross-compilation from Linux)
+
+To build the engine for Windows from a Linux environment, you will need to have the following installed:
+
+*   **MinGW-w64:** A cross-compiler that allows you to create Windows executables from Linux. You can install it on Debian/Ubuntu with `sudo apt-get install mingw-w64`.
+*   **SDL2 Development Libraries for MinGW:** You need to download the development libraries for MinGW from the SDL2 website and place them in a location of your choice.
+
+Once you have these installed, you will need to edit the `Makefile` and update the following variables with the correct paths to your SDL2 libraries:
+
+*   `WIN_CXXFLAGS`: Update the `-I` flag to point to the `include` directory of your SDL2 libraries.
+*   `WIN_LDFLAGS`: Update the `-L` flag to point to the `lib` directory of your SDL2 libraries.
+
+After updating the `Makefile`, you can build the Windows executable by running the following command:
+
+```
+make windows
 ```
 
 ## Usage
