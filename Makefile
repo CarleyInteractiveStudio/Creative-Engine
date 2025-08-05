@@ -1,7 +1,7 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++14 -Isrc -Ivendor -IGlad/include
-LDFLAGS = -lSDL2 -lGL
+CXXFLAGS = -std=c++14 -Isrc -Ivendor -IGlad/include -Iexternal/SDL2-Binaries/include
+LDFLAGS = -lSDL2 -lGL -Lexternal/SDL2-Binaries/lib
 
 # Windows cross-compilation
 WIN_CXX = x86_64-w64-mingw32-g++
@@ -24,9 +24,10 @@ SRCS = src/main.cpp \
        vendor/imgui.cpp \
        vendor/imgui_demo.cpp \
        vendor/imgui_draw.cpp \
-       vendor/imgui_impl_sdl.cpp \
-       vendor/imgui_impl_opengl3.cpp \
        vendor/imgui_widgets.cpp \
+       vendor/imgui_tables.cpp \
+       vendor/imgui_impl_sdl2.cpp \
+       vendor/imgui_impl_opengl3.cpp \
        Glad/src/glad.c
 
 OBJS = $(SRCS:.cpp=.o)
