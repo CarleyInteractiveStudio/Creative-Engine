@@ -1,4 +1,6 @@
 #include "Editor.h"
+#include <SDL2/SDL.h>
+#include "glad/glad.h"
 
 Editor::Editor() : window("Creative Engine", 1280, 720) {
     // Setup Dear ImGui context
@@ -11,7 +13,7 @@ Editor::Editor() : window("Creative Engine", 1280, 720) {
 
     // Setup Platform/Renderer backends
     ImGui_ImplSDL2_InitForOpenGL(window.get_native_window(), window.get_native_context());
-    ImGui_ImplOpenGL3_Init("#version 130");
+    ImGui_ImplOpenGL3_Init("#version 330");
 }
 
 Editor::~Editor() {
@@ -23,7 +25,13 @@ Editor::~Editor() {
 
 void Editor::run() {
     while (window.is_open()) {
-        handle_input();
+        SDL_Event event;
+        while (SDL_PollEvent(&event)) {
+            ImGui_ImplSDL2_ProcessEvent(&event);
+            if (event.type == SDL_QUIT) {
+                window.close();
+            }
+        }
 
         // Start the Dear ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
@@ -40,16 +48,6 @@ void Editor::run() {
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         window.swap_buffers();
-    }
-}
-
-void Editor::handle_input() {
-    SDL_Event event;
-    while (SDL_PollEvent(&event)) {
-        ImGui_ImplSDL2_ProcessEvent(&event);
-        if (event.type == SDL_QUIT) {
-            window.close();
-        }
     }
 }
 

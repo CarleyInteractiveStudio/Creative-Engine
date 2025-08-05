@@ -1,5 +1,6 @@
 #include "Window.h"
 #include <iostream>
+#include "glad/glad.h"
 
 Window::Window(const char* title, int width, int height) {
     SDL_Init(SDL_INIT_VIDEO);
@@ -21,6 +22,11 @@ Window::Window(const char* title, int width, int height) {
         return;
     }
 
+    if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) {
+        std::cerr << "Failed to initialize GLAD" << std::endl;
+        return;
+    }
+
     open = true;
 }
 
@@ -34,15 +40,10 @@ void Window::swap_buffers() {
     SDL_GL_SwapWindow(window);
 }
 
-void Window::poll_events() {
-    SDL_Event event;
-    while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_QUIT) {
-            open = false;
-        }
-    }
-}
-
 bool Window::is_open() const {
     return open;
+}
+
+void Window::close() {
+    open = false;
 }

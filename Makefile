@@ -1,6 +1,6 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Isrc -Ivendor/imgui
-LDFLAGS = -lSDL2 -lGL
+CXXFLAGS = -std=c++11 -Isrc -Ivendor -IGlad/include -Iexternal/SDL2-Binaries/include
+LDFLAGS = -lSDL2 -lGL -Lexternal/SDL2-Binaries/lib
 
 SRCS = src/main.cpp \
        src/core/Vector3.cpp \
@@ -11,14 +11,16 @@ SRCS = src/main.cpp \
        src/renderer/Renderer.cpp \
        src/renderer/Window.cpp \
        src/editor/Editor.cpp \
-       vendor/imgui/imgui.cpp \
-       vendor/imgui/imgui_demo.cpp \
-       vendor/imgui/imgui_draw.cpp \
-       vendor/imgui/imgui_impl_sdl.cpp \
-       vendor/imgui/imgui_impl_opengl3.cpp \
-       vendor/imgui/imgui_widgets.cpp
+       vendor/imgui.cpp \
+       vendor/imgui_demo.cpp \
+       vendor/imgui_draw.cpp \
+       vendor/imgui_impl_sdl.cpp \
+       vendor/imgui_impl_opengl3.cpp \
+       vendor/imgui_widgets.cpp \
+       Glad/src/glad.c
 
 OBJS = $(SRCS:.cpp=.o)
+OBJS := $(OBJS:.c=.o)
 
 TARGET = engine
 
@@ -28,6 +30,9 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS) $(LDFLAGS)
 
 %.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+%.o: %.c
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 run: $(TARGET)
