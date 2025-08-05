@@ -2,16 +2,123 @@
 
 This is a 3D game engine written in C++. It is still under development.
 
-## Core Concept: Matter and Laws
+## Vision and Architecture
+
+### Core Concept: Matter and Laws
 
 In Creative Engine, everything in the world is **Matter**, and every **Matter** operates according to one or more **Laws**.
 
 -   **Matter**: An object or entity in the world (tangible or intangible). This is similar to a `GameObject` in Unity.
 -   **Law**: A rule or module that defines the behavior of that **Matter** (e.g., its movement, appearance, sound, etc.). This is similar to a `Component` in Unity.
 
+### Engine Layers
+
+Creative Engine will be divided into layers that work together but are modular:
+
+*   **Platform Layer:** Windows, input (keyboard, mouse, gamepad), timing, threads. Abstraction of the operating system.
+*   **Core Layer:** Math, memory, logging, global events. Time system (delta time, frames).
+*   **Matter and Law System:** Registration and management of all **Matter**. Administration of **Laws** and how they are applied. Hierarchy (parent/child) and propagation of transformations.
+*   **Scene Space:** Container of all active **Matter**. Support for sub-scenes and streaming of parts of the world.
+*   **Rendering (2D and 3D):** Cameras, materials, lights, meshes. Optimized graphics pipeline.
+*   **Physics:** Collision and simulation engine. **Laws** that apply movement, gravity, forces.
+*   **Animation:** Skeletal and sprite animations. Mixing of clips and transitions.
+*   **Audio:** Positional sound, music, effects.
+*   **Scripting (C#):** API for the user to control **Matter** and **Laws** from scripts. Lifecycle (`Start`, `Update`, `OnEvent`).
+*   **Asset Management:** Import of models (FBX, glTF), textures, sounds. Conversion to internal format.
+*   **Editor Tools:** Graphical interface to create, move, and modify **Matter** and **Laws**. Inspector and scene view.
+*   **Build System:** Packaging of assets and final compilation.
+
+### Conceptual Folder Structure
+
+```
+/CreativeEngine/
+  /Engine/
+    /Platform/        # Platform and input
+    /Core/            # Engine core
+    /MatterSystem/    # Management of Matter and Laws
+    /SceneSpace/      # Scenes and sub-scenes
+    /Renderer/        # 2D/3D Render
+    /Physics/         # Physics and collisions
+    /Animation/       # Animations
+    /Audio/           # Sound
+    /Scripting/       # C# support
+    /Assets/          # Asset manager
+    /UI/              # Editor tools
+  /Editor/            # Visual editor
+  /Tools/             # CLI tools
+  /GameProjects/      # Projects made with the engine
+  /Build/             # Build system
+  /Docs/              # Documentation
+```
+
+### Clear Development Instructions
+
+#### Phase 0 — Fundamentals
+
+*   Define own file formats for:
+    *   Scenes (`.cescene`) → list of **Matter** and their **Laws**.
+    *   Prefabs (`.ceprefab`) → templates of **Matter** with **Laws**.
+    *   Asset bundles (`.cepack`) → resource packaging.
+*   Create the base engine:
+    *   Initialize platform, input, and timer.
+    *   Core configuration.
+    *   Empty but functional asset manager.
+
+#### Phase 1 — Matter and Laws
+
+*   Design **Matter**:
+    *   Unique identifier, name, and state (active/inactive).
+    *   List of applied **Laws**.
+    *   Hierarchy (parent/child).
+*   Design **Laws**:
+    *   Each **Law** has its own type and data.
+    *   Examples: `MotionLaw`, `AppearanceLaw`, `PhysicsLaw`, `AudioLaw`.
+    *   They can interact with each other via an event system.
+*   Create **Scene Space**:
+    *   Container of active **Matter**.
+    *   Support for loading and unloading scenes without restarting everything.
+
+#### Phase 2 — Rendering
+
+*   Support for:
+    *   Orthographic (2D) and perspective (3D) camera.
+    *   Rendering of meshes and sprites.
+    *   Basic lighting.
+*   Integrate appearance laws (`AppearanceLaw`) that handle:
+    *   Materials, textures, colors.
+    *   FBX/glTF models converted to internal format.
+
+#### Phase 3 — Physics and Animation
+
+*   **Physics:**
+    *   `PhysicsLaw` for movement and collisions.
+    *   Detection and response engine.
+*   **Animation:**
+    *   `AnimationLaw` to play clips.
+    *   Support for skeletal animations and blending.
+
+#### Phase 4 — Scripting and Editor
+
+*   Integrate C#:
+    *   Exposed API to manipulate **Matter** and **Laws**.
+    *   Hooks (`Start`, `Update`, `OnCollision`, etc.).
+*   **Editor:**
+    *   Scene view and **Matter** hierarchy.
+    *   Inspector to edit **Laws** and properties.
+    *   Drag and drop assets.
+
+#### Phase 5 — Build and Optimization
+
+*   **Packaging:**
+    *   Asset bundles (`.cepack`) with all optimized resources.
+    *   Script compilation.
+*   **Optimization:**
+    *   Culling, batching, LOD.
+    *   Scene streaming.
+
 ## Current State
 
-The engine is currently in an early stage of development. We have laid the foundations and implemented the core `Matter` and `Law` system.
+The engine is currently in **Phase 1**. We have laid the foundations and implemented the core `Matter` and `Law` system.
 
 ### Features Implemented:
 
@@ -22,25 +129,6 @@ The engine is currently in an early stage of development. We have laid the found
     *   `AppearanceLaw`: Manages the color of a `Matter` object.
 *   **Renderer:** A basic renderer that can draw `Matter` objects based on their `TransformLaw` and `AppearanceLaw`.
 *   **Editor:** An integrated editor using ImGui that allows you to inspect and modify the properties of `Matter` and its `Laws`.
-
-## Roadmap (Next Steps)
-
-The following is a list of the next features to be implemented, based on the original plan:
-
-*   **Physics:**
-    *   `RigidbodyLaw` for movement and collisions.
-    *   A collision detection and response engine.
-*   **Animation:**
-    *   `AnimationLaw` to play clips.
-    *   Support for skeletal animations and blending.
-*   **Scripting (C#):**
-    *   An API to control `Matter` and `Laws` from scripts.
-    *   Lifecycle hooks (`Start`, `Update`, `OnCollision`, etc.).
-*   **Asset Management:**
-    *   Importing models (FBX, glTF), textures, and sounds.
-    *   Conversion to an internal format.
-*   **Build System:**
-    *   Packaging of assets and final compilation.
 
 ## How to Contribute
 
