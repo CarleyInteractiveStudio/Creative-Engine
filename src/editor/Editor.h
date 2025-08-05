@@ -1,9 +1,12 @@
 #pragma once
 
-#include "../renderer/Window.h"
-#include "imgui.h"
-#include "imgui_impl_sdl.h"
-#include "imgui_impl_opengl3.h"
+#include <vector>
+#include <memory>
+#include "../core/Matter.h"
+
+class Window;
+class Renderer;
+class Camera;
 
 class Editor {
 public:
@@ -13,8 +16,10 @@ public:
     void run();
 
 private:
-    void handle_input();
     void render_ui();
 
-    Window window;
+    std::unique_ptr<Window> m_window;
+    std::unique_ptr<Renderer> m_renderer;
+    std::unique_ptr<Camera> m_camera;
+    std::vector<std::unique_ptr<Creative::Matter>> m_matters;
 };

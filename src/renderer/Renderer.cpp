@@ -72,6 +72,10 @@ unsigned int Renderer::create_shader_program(const char* vertex_source, const ch
     return program;
 }
 
+#include "../core/Matter.h"
+#include "../core/TransformLaw.h"
+#include "../core/AppearanceLaw.h"
+
 void Renderer::render(const Mesh& mesh, const Material& material, const Camera& camera, const Matrix4& model_matrix) {
     glBindVertexArray(vao);
 
@@ -100,4 +104,39 @@ void Renderer::render(const Mesh& mesh, const Material& material, const Camera& 
     glDrawElements(GL_TRIANGLES, mesh.indices.size(), GL_UNSIGNED_INT, 0);
 
     glBindVertexArray(0);
+}
+
+void Renderer::draw(Creative::Matter& matter, const Camera& camera)
+{
+    auto* transform_law = matter.GetLaw<Creative::TransformLaw>();
+    auto* appearance_law = matter.GetLaw<Creative::AppearanceLaw>();
+
+    if (transform_law && appearance_law) {
+        Matrix4 model_matrix = transform_law->GetTransform();
+        Material material(appearance_law->color);
+
+        // For now, we draw a cube for any matter.
+        // In the future, we would have a MeshLaw or similar.
+        std::vector<Vertex> vertices = {
+            // positions          // normals
+            { -0.5f, -0.5f, -0.5f },
+            {  0.5f, -0.5f, -0.5f },
+            {  0.5f,  0.5f, -0.5f },
+            { -0.5f,  0.5f, -0.5f },
+            { -0.5f, -0.5f,  0.5f },
+            {  0.5f, -0.5f,  0.5f },
+            {  0.5f,  0.5f,  0.5f },
+            { -0.5f,  0.5f,  0.5f },
+        };
+        std::vector<unsigned int> indices = {
+            0, 1, 2, 2, 3, 0,
+            4, 5, 6, 6, 7, 4,
+            7, 3, 0, 0, 4, 7,
+            6, 2, 1, 1, 5, 6,
+            0, 3, 2, 2, 1, 0,
+            4, 7, 6, 6, 5, 4,
+        };
+        Mesh cube(vertices, indices);
+        render(cube, material, camera, model_matrix);
+    }
 }

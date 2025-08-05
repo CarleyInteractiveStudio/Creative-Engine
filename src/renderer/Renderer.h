@@ -5,12 +5,17 @@
 #include "Camera.h"
 #include "../core/Matrix4.h"
 
+namespace Creative {
+    class Matter;
+}
+
 class Renderer {
 public:
     Renderer();
     ~Renderer();
 
     void render(const Mesh& mesh, const Material& material, const Camera& camera, const Matrix4& model_matrix);
+    void draw(Creative::Matter& matter, const Camera& camera);
 
 private:
     unsigned int shader_program;

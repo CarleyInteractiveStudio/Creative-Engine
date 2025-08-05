@@ -1,10 +1,13 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Isrc -Ivendor -IGlad/include -Iexternal/SDL2-Binaries/include
+CXXFLAGS = -std=c++14 -Isrc -Ivendor -IGlad/include -Iexternal/SDL2-Binaries/include
 LDFLAGS = -lSDL2 -lGL -Lexternal/SDL2-Binaries/lib
 
 SRCS = src/main.cpp \
        src/core/Vector3.cpp \
        src/core/Matrix4.cpp \
+       src/core/Matter.cpp \
+       src/core/TransformLaw.cpp \
+       src/core/AppearanceLaw.cpp \
        src/renderer/Camera.cpp \
        src/renderer/Mesh.cpp \
        src/renderer/Material.cpp \
