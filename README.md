@@ -2,26 +2,24 @@
 
 This is a 3D game engine written in C++. It is still under development, but it currently supports the following features:
 
-*   3D rendering
-*   A simple scene graph
-*   A material system
-*   A camera system
-*   A windowing system
+*   **Sistema de Renderizado 3D:** The core of the engine, capable of rendering graphics in three dimensions.
+*   **Sistema de Escena (Scene Graph):** To organize and manage objects in the game world.
+*   **Sistema de Materiales:** Allows defining and applying different materials to 3D objects.
+*   **Sistema de Cámara:** Controls the player's view in the 3D world.
+*   **Sistema de Ventanas:** Manages the creation and handling of the application window.
+*   **Editor Integrado (usando ImGui):** A user interface to interact with the engine and edit game content.
 
 ## Getting Started
 
 To get started, you will need to have the following installed:
 
-*   A C++ compiler
-*   CMake
+*   A C++ compiler (g++)
+*   Make
 *   SDL2
 
-Once you have these installed, you can build the engine by running the following commands:
+Once you have these installed, you can build the engine by running the following command:
 
 ```
-mkdir build
-cd build
-cmake ..
 make
 ```
 
@@ -30,10 +28,10 @@ make
 To run the engine, you can run the following command:
 
 ```
-./build/main
+./engine
 ```
 
-This will open a window with a 3D cube.
+This will open a window with the editor.
 
 ## Contributing
 
