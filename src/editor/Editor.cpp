@@ -10,7 +10,7 @@
 #include "../renderer/Camera.h"
 #include "../core/Matter.h"
 #include "../core/TransformLaw.h"
-#include "../core/AppearanceLaw.h"
+#include "../core/MaterialColorLaw.h"
 
 Editor::Editor() {
     m_window = std::make_unique<Window>("Creative Engine", 1280, 720);
@@ -34,7 +34,7 @@ Editor::Editor() {
     // Create a sample matter
     auto matter = std::make_unique<Creative::Matter>();
     matter->AddLaw<Creative::TransformLaw>();
-    matter->AddLaw<Creative::AppearanceLaw>();
+    matter->AddLaw<Creative::MaterialColorLaw>();
     m_matters.push_back(std::move(matter));
 }
 
@@ -149,13 +149,53 @@ void Editor::render_inspector_panel() {
     ImGui::Begin("Inspector");
 
     if (m_selected_matter) {
-        ImGui::Text("Name: %s", m_selected_matter->m_name.c_str());
-        ImGui::Separator();
-        ImGui::Text("Laws:");
-
-        for (const auto& law : m_selected_matter->GetLaws()) {
-            ImGui::Text("- %s", typeid(*law.get()).name());
+        // Display Matter's name (and allow editing it)
+        char buffer[256];
+        strncpy(buffer, m_selected_matter->m_name.c_str(), sizeof(buffer));
+        buffer[sizeof(buffer) - 1] = 0;
+        if (ImGui::InputText("Name", buffer, sizeof(buffer))) {
+            m_selected_matter->m_name = buffer;
         }
+
+        ImGui::Separator();
+
+        // Display TransformLaw properties
+        if (auto* transform_law = m_selected_matter->GetLaw<Creative::TransformLaw>()) {
+            if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen)) {
+                ImGui::DragFloat3("Position", &transform_law->position.x, 0.1f);
+                ImGui::DragFloat3("Rotation", &transform_law->rotation.x, 0.1f);
+                ImGui::DragFloat3("Scale", &transform_law->scale.x, 0.1f);
+            }
+        }
+
+        // Display MaterialColorLaw properties
+        if (auto* color_law = m_selected_matter->GetLaw<Creative::MaterialColorLaw>()) {
+            if (ImGui::CollapsingHeader("Material Color", ImGuiTreeNodeFlags_DefaultOpen)) {
+                ImGui::ColorEdit3("Color", &color_law->color.x);
+            }
+        }
+
+        ImGui::Separator();
+        if (ImGui::Button("Add Law")) {
+            ImGui::OpenPopup("AddLawPopup");
+        }
+
+        if (ImGui::BeginPopup("AddLawPopup")) {
+            if (ImGui::MenuItem("Transform Law")) {
+                if (m_selected_matter->GetLaw<Creative::TransformLaw>() == nullptr) {
+                    m_selected_matter->AddLaw<Creative::TransformLaw>();
+                }
+                ImGui::CloseCurrentPopup();
+            }
+            if (ImGui::MenuItem("Material Color Law")) {
+                if (m_selected_matter->GetLaw<Creative::MaterialColorLaw>() == nullptr) {
+                    m_selected_matter->AddLaw<Creative::MaterialColorLaw>();
+                }
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::EndPopup();
+        }
+
     } else {
         ImGui::Text("No matter selected.");
     }

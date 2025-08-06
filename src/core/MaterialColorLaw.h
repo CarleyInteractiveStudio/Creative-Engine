@@ -5,10 +5,10 @@
 
 namespace Creative {
 
-class AppearanceLaw : public Law {
+class MaterialColorLaw : public Law {
 public:
-    AppearanceLaw(Matter* matter);
-    ~AppearanceLaw() override;
+    MaterialColorLaw(Matter* matter);
+    ~MaterialColorLaw() override;
 
     void OnUpdate(float dt) override;
 

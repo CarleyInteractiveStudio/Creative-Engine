@@ -72,7 +72,7 @@ Creative Engine will be divided into layers that work together but are modular:
     *   Hierarchy (parent/child).
 *   Design **Laws**:
     *   Each **Law** has its own type and data.
-    *   Examples: `MotionLaw`, `AppearanceLaw`, `PhysicsLaw`, `AudioLaw`.
+    *   Examples: `MotionLaw`, `MaterialColorLaw`, `PhysicsLaw`, `AudioLaw`.
     *   They can interact with each other via an event system.
 *   Create **Scene Space**:
     *   Container of active **Matter**.
@@ -84,7 +84,7 @@ Creative Engine will be divided into layers that work together but are modular:
     *   Orthographic (2D) and perspective (3D) camera.
     *   Rendering of meshes and sprites.
     *   Basic lighting.
-*   Integrate appearance laws (`AppearanceLaw`) that handle:
+*   Integrate appearance laws (`MaterialColorLaw`) that handle:
     *   Materials, textures, colors.
     *   FBX/glTF models converted to internal format.
 
@@ -136,8 +136,8 @@ The engine is currently in **Phase 1**. We have laid the foundations and impleme
 *   **Core System:** Basic math classes (`Vector3`, `Matrix4`), and the `Matter` and `Law` system.
 *   **Initial Laws:**
     *   `TransformLaw`: Manages the position, rotation, and scale of a `Matter` object.
-    *   `AppearanceLaw`: Manages the color of a `Matter` object.
-*   **Renderer:** A basic renderer that can draw `Matter` objects based on their `TransformLaw` and `AppearanceLaw`.
+    *   `MaterialColorLaw`: Manages the color of a `Matter` object.
+*   **Renderer:** A basic renderer that can draw `Matter` objects based on their `TransformLaw` and `MaterialColorLaw`.
 *   **Editor:** An integrated editor using ImGui that allows you to inspect and modify the properties of `Matter` and its `Laws`.
 
 ## How to Contribute

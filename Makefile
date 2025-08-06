@@ -9,7 +9,7 @@ SRCS = src/main.cpp \
        src/core/Matrix4.cpp \
        src/core/Matter.cpp \
        src/core/TransformLaw.cpp \
-       src/core/AppearanceLaw.cpp \
+       src/core/MaterialColorLaw.cpp \
        src/renderer/Camera.cpp \
        src/renderer/Mesh.cpp \
        src/renderer/Material.cpp \

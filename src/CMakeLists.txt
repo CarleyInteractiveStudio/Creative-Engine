@@ -5,7 +5,7 @@ add_executable(engine
     core/Matrix4.cpp
     core/Matter.cpp
     core/TransformLaw.cpp
-    core/AppearanceLaw.cpp
+    core/MaterialColorLaw.cpp
     renderer/Camera.cpp
     renderer/Mesh.cpp
     renderer/Material.cpp

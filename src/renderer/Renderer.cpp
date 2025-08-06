@@ -74,7 +74,7 @@ unsigned int Renderer::create_shader_program(const char* vertex_source, const ch
 
 #include "../core/Matter.h"
 #include "../core/TransformLaw.h"
-#include "../core/AppearanceLaw.h"
+#include "../core/MaterialColorLaw.h"
 
 void Renderer::render(const Mesh& mesh, const Material& material, const Camera& camera, const Matrix4& model_matrix) {
     glBindVertexArray(vao);
@@ -109,7 +109,7 @@ void Renderer::render(const Mesh& mesh, const Material& material, const Camera& 
 void Renderer::draw(Creative::Matter& matter, const Camera& camera)
 {
     auto* transform_law = matter.GetLaw<Creative::TransformLaw>();
-    auto* appearance_law = matter.GetLaw<Creative::AppearanceLaw>();
+    auto* appearance_law = matter.GetLaw<Creative::MaterialColorLaw>();
 
     if (transform_law && appearance_law) {
         Matrix4 model_matrix = transform_law->GetTransform();
