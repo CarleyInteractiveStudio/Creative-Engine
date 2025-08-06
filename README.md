@@ -116,6 +116,16 @@ Creative Engine will be divided into layers that work together but are modular:
     *   Culling, batching, LOD.
     *   Scene streaming.
 
+## Current Status
+
+The project has been migrated to SDL3, but the executable currently crashes at runtime with the following error:
+
+```
+engine: vendor/imgui.cpp:8534: void ImGui::End(): Assertion `(g.CurrentWindowStack.Size > 1) && "Calling End() too many times!"' failed.
+```
+
+This error is related to the ImGui library and seems to be caused by an incorrect number of calls to `ImGui::Begin()` and `ImGui::End()`. I have been unable to resolve this issue, but I have left the UI code in a simplified state to make it easier to debug.
+
 ## Current State
 
 The engine is currently in **Phase 1**. We have laid the foundations and implemented the core `Matter` and `Law` system.
