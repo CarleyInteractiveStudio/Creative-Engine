@@ -8,6 +8,7 @@
 #include "../renderer/Window.h"
 #include "../renderer/Renderer.h"
 #include "../renderer/Camera.h"
+#include "../renderer/Framebuffer.h"
 #include "../core/Matter.h"
 #include "../core/TransformLaw.h"
 #include "../core/MaterialColorLaw.h"
@@ -16,6 +17,7 @@ Editor::Editor() {
     m_window = std::make_unique<Window>("Creative Engine", 1280, 720);
     m_renderer = std::make_unique<Renderer>();
     m_camera = std::make_unique<Camera>();
+    m_framebuffer = std::make_unique<Framebuffer>(1280, 720);
 
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
@@ -59,23 +61,32 @@ void Editor::run() {
             matter->OnUpdate(0.0f); // TODO: pass real delta time
         }
 
-        // Start the Dear ImGui frame
+        // --- Scene Rendering ---
+        m_framebuffer->Bind();
+        glViewport(0, 0, 1280, 720); // TODO: Make this dynamic
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        for (auto& matter : m_matters) {
+            m_renderer->draw(*matter, *m_camera);
+        }
+        m_framebuffer->Unbind();
+
+
+        // --- UI Rendering ---
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplSDL3_NewFrame();
         ImGui::NewFrame();
 
         render_ui();
 
-        // Rendering
+        ImGui::Render();
+
+        // Clear the main window before drawing the UI
         glViewport(0, 0, (int)ImGui::GetIO().DisplaySize.x, (int)ImGui::GetIO().DisplaySize.y);
         glClearColor(0.45f, 0.55f, 0.60f, 1.00f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        for (auto& matter : m_matters) {
-            m_renderer->draw(*matter, *m_camera);
-        }
-
-        ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         ImGuiIO& io = ImGui::GetIO();
@@ -130,6 +141,7 @@ void Editor::render_ui() {
     // Our custom editor panels
     render_hierarchy_panel();
     render_inspector_panel();
+    render_scene_view_panel();
 }
 
 void Editor::render_hierarchy_panel() {
@@ -141,6 +153,22 @@ void Editor::render_hierarchy_panel() {
             m_selected_matter = matter.get();
         }
     }
+
+    ImGui::End();
+}
+
+void Editor::render_scene_view_panel() {
+    ImGui::Begin("Scene");
+
+    // Get the size of the viewport
+    ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+
+    // Get the color attachment texture ID from our framebuffer
+    uint32_t textureID = m_framebuffer->GetColorAttachmentRendererID();
+
+    // Display the image
+    // The UV coordinates need to be flipped vertically because of how OpenGL textures are oriented.
+    ImGui::Image((void*)(intptr_t)textureID, viewportPanelSize, ImVec2(0, 1), ImVec2(1, 0));
 
     ImGui::End();
 }

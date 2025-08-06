@@ -11,6 +11,7 @@ add_executable(engine
     renderer/Material.cpp
     renderer/Renderer.cpp
     renderer/Window.cpp
+    renderer/Framebuffer.cpp
     editor/Editor.cpp
     ../vendor/imgui.cpp
     ../vendor/imgui_demo.cpp
