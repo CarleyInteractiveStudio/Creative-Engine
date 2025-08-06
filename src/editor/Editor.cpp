@@ -1,4 +1,5 @@
 #include "Editor.h"
+#include <typeinfo>
 #include <SDL3/SDL.h>
 #include "glad/glad.h"
 #include "imgui.h"
@@ -125,4 +126,39 @@ void Editor::render_ui() {
 
     // The demo window will now be dockable
     ImGui::ShowDemoWindow();
+
+    // Our custom editor panels
+    render_hierarchy_panel();
+    render_inspector_panel();
+}
+
+void Editor::render_hierarchy_panel() {
+    ImGui::Begin("Hierarchy");
+
+    for (const auto& matter : m_matters) {
+        // Basic selectable text. We can add more features like rename, delete, etc. later.
+        if (ImGui::Selectable(matter->m_name.c_str(), m_selected_matter == matter.get())) {
+            m_selected_matter = matter.get();
+        }
+    }
+
+    ImGui::End();
+}
+
+void Editor::render_inspector_panel() {
+    ImGui::Begin("Inspector");
+
+    if (m_selected_matter) {
+        ImGui::Text("Name: %s", m_selected_matter->m_name.c_str());
+        ImGui::Separator();
+        ImGui::Text("Laws:");
+
+        for (const auto& law : m_selected_matter->GetLaws()) {
+            ImGui::Text("- %s", typeid(*law.get()).name());
+        }
+    } else {
+        ImGui::Text("No matter selected.");
+    }
+
+    ImGui::End();
 }

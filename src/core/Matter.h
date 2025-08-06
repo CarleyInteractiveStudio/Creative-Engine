@@ -2,12 +2,15 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 #include "Law.h"
 
 namespace Creative {
 
 class Matter {
 public:
+    std::string m_name;
+
     Matter();
     ~Matter();
 
@@ -21,6 +24,8 @@ public:
         m_laws.push_back(std::move(law));
         return ptr;
     }
+
+    const std::vector<std::unique_ptr<Law>>& GetLaws() const;
 
     template<typename T>
     T* GetLaw() {
