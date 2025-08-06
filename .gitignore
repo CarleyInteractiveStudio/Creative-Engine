@@ -1,0 +1,11 @@
+# Build output
+build/
+*.o
+
+# Executables
+engine
+engine.exe
+creative_engine
+
+# Logs
+*.log
