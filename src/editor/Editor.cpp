@@ -1,8 +1,8 @@
 #include "Editor.h"
-#include <SDL3/SDL.h>
+#include <SDL2/SDL.h>
 #include "glad/glad.h"
 #include "imgui.h"
-#include "imgui_impl_sdl3.h"
+#include "imgui_impl_sdl2.h"
 #include "imgui_impl_opengl3.h"
 #include "../renderer/Window.h"
 #include "../renderer/Renderer.h"
@@ -27,7 +27,7 @@ Editor::Editor() {
     ImGui::StyleColorsDark();
 
     // Setup Platform/Renderer backends
-    ImGui_ImplSDL3_InitForOpenGL(m_window->get_native_window(), m_window->get_native_context());
+    ImGui_ImplSDL2_InitForOpenGL(m_window->get_native_window(), m_window->get_native_context());
     ImGui_ImplOpenGL3_Init("#version 330");
 
     // Create a sample matter
@@ -40,7 +40,7 @@ Editor::Editor() {
 Editor::~Editor() {
     // Cleanup
     ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplSDL3_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();
 }
 
@@ -48,8 +48,8 @@ void Editor::run() {
     while (m_window->is_open()) {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
-            ImGui_ImplSDL3_ProcessEvent(&event);
-            if (event.type == SDL_EVENT_QUIT) {
+            ImGui_ImplSDL2_ProcessEvent(&event);
+            if (event.type == SDL_QUIT) {
                 m_window->close();
             }
         }

@@ -1,0 +1,3 @@
+error: XDG_RUNTIME_DIR is invalid or not set in the environment.
+engine: vendor/imgui.cpp:8534: void ImGui::End(): Assertion `(g.CurrentWindowStack.Size > 1) && "Calling End() too many times!"' failed.
+Aborted
