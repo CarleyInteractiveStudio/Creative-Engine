@@ -1,3 +1,6 @@
+[submodule "external/SDL2-Binaries"]
+	path = external/SDL2-Binaries
+	url = https://github.com/OutOfOrder/SDL2-Binaries.git
 [submodule "SDL"]
 	path = SDL
 	url = https://github.com/libsdl-org/SDL.git

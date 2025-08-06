@@ -1,7 +1,7 @@
 # Compiler and flags
 CXX = g++
 CXXFLAGS = -std=c++14 -Isrc -Ivendor -IGlad/include -ISDL/include
-LDFLAGS = -lSDL3 -lGL -LSDL/build
+LDFLAGS = -lSDL3 -lGL -L/app/SDL/build
 
 # Source files
 SRCS = src/main.cpp \

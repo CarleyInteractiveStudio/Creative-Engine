@@ -1,8 +1,8 @@
 #include "Editor.h"
-#include <SDL2/SDL.h>
+#include <SDL3/SDL.h>
 #include "glad/glad.h"
 #include "imgui.h"
-#include "imgui_impl_sdl2.h"
+#include "imgui_impl_sdl3.h"
 #include "imgui_impl_opengl3.h"
 #include "../renderer/Window.h"
 #include "../renderer/Renderer.h"
@@ -27,7 +27,7 @@ Editor::Editor() {
     ImGui::StyleColorsDark();
 
     // Setup Platform/Renderer backends
-    ImGui_ImplSDL2_InitForOpenGL(m_window->get_native_window(), m_window->get_native_context());
+    ImGui_ImplSDL3_InitForOpenGL(m_window->get_native_window(), m_window->get_native_context());
     ImGui_ImplOpenGL3_Init("#version 330");
 
     // Create a sample matter
@@ -40,7 +40,7 @@ Editor::Editor() {
 Editor::~Editor() {
     // Cleanup
     ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplSDL2_Shutdown();
+    ImGui_ImplSDL3_Shutdown();
     ImGui::DestroyContext();
 }
 
@@ -48,8 +48,8 @@ void Editor::run() {
     while (m_window->is_open()) {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
-            ImGui_ImplSDL2_ProcessEvent(&event);
-            if (event.type == SDL_QUIT) {
+            ImGui_ImplSDL3_ProcessEvent(&event);
+            if (event.type == SDL_EVENT_QUIT) {
                 m_window->close();
             }
         }
@@ -60,7 +60,7 @@ void Editor::run() {
 
         // Start the Dear ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplSDL2_NewFrame();
+        ImGui_ImplSDL3_NewFrame();
         ImGui::NewFrame();
 
         render_ui();
@@ -92,86 +92,7 @@ void Editor::run() {
 }
 
 void Editor::render_ui() {
-    static bool dockspace_open = true;
-    static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
-
-    ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
-    const ImGuiViewport* viewport = ImGui::GetMainViewport();
-    ImGui::SetNextWindowPos(viewport->WorkPos);
-    ImGui::SetNextWindowSize(viewport->WorkSize);
-    ImGui::SetNextWindowViewport(viewport->ID);
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
-    window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
-    window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
-
-    if (dockspace_flags & ImGuiDockNodeFlags_PassthruCentralNode)
-        window_flags |= ImGuiWindowFlags_NoBackground;
-
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
-    ImGui::Begin("DockSpace Demo", &dockspace_open, window_flags);
-    ImGui::PopStyleVar();
-    ImGui::PopStyleVar(2);
-
-    ImGuiIO& io = ImGui::GetIO();
-    if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable) {
-        ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
-        ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
+    if (ImGui::GetCurrentContext()) {
+        ImGui::ShowDemoWindow();
     }
-
-    if (ImGui::BeginMenuBar()) {
-        if (ImGui::BeginMenu("File")) {
-            if (ImGui::MenuItem("New Project")) {}
-            if (ImGui::MenuItem("Open Project")) {}
-            if (ImGui::MenuItem("Export Project")) {}
-            ImGui::EndMenu();
-        }
-        if (ImGui::BeginMenu("Edit")) {
-            if (ImGui::MenuItem("Undo")) {}
-            if (ImGui::MenuItem("Redo")) {}
-            ImGui::EndMenu();
-        }
-        if (ImGui::BeginMenu("Window")) {
-            if (ImGui::MenuItem("Hierarchy")) {}
-            if (ImGui::MenuItem("Inspector")) {}
-            if (ImGui::MenuItem("Scene")) {}
-            ImGui::EndMenu();
-        }
-        if (ImGui::BeginMenu("Help")) {
-            if (ImGui::MenuItem("About")) {}
-            ImGui::EndMenu();
-        }
-        ImGui::EndMainMenuBar();
-    }
-
-    ImGui::End();
-
-    ImGui::Begin("Hierarchy");
-    for (auto& matter : m_matters) {
-        ImGui::TreeNode("Matter");
-    }
-    ImGui::End();
-
-    ImGui::Begin("Inspector");
-    for (auto& matter : m_matters) {
-        if (ImGui::TreeNode("Matter")) {
-            auto* transform = matter->GetLaw<Creative::TransformLaw>();
-            if (transform && ImGui::TreeNode("Transform")) {
-                ImGui::DragFloat3("Position", &transform->position.x, 0.1f);
-                ImGui::DragFloat3("Rotation", &transform->rotation.x, 0.1f);
-                ImGui::DragFloat3("Scale", &transform->scale.x, 0.1f);
-                ImGui::TreePop();
-            }
-            auto* appearance = matter->GetLaw<Creative::AppearanceLaw>();
-            if (appearance && ImGui::TreeNode("Appearance")) {
-                ImGui::ColorEdit3("Color", &appearance->color.x);
-                ImGui::TreePop();
-            }
-            ImGui::TreePop();
-        }
-    }
-    ImGui::End();
-
-    ImGui::Begin("Scene");
-    ImGui::End();
 }
