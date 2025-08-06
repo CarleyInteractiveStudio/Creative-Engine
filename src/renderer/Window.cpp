@@ -10,7 +10,7 @@ Window::Window(const char* title, int width, int height) {
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 
-    window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
+    window = SDL_CreateWindow(title, width, height, SDL_WINDOW_OPENGL);
     if (!window) {
         std::cerr << "Failed to create window: " << SDL_GetError() << std::endl;
         return;
@@ -31,7 +31,7 @@ Window::Window(const char* title, int width, int height) {
 }
 
 Window::~Window() {
-    SDL_GL_DeleteContext(context);
+    SDL_GL_DestroyContext(context);
     SDL_DestroyWindow(window);
     SDL_Quit();
 }

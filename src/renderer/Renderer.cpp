@@ -6,7 +6,7 @@
 
 // This is a placeholder for GLAD
 #define GL_GLEXT_PROTOTYPES
-#include <SDL2/SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
 
 std::string read_shader_file(const char* path) {
     std::ifstream file(path);
