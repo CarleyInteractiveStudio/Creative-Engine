@@ -16,4 +16,7 @@ struct Matrix4 {
 
     Matrix4 operator*(const Matrix4& other) const;
     Vector3 operator*(const Vector3& vec) const;
+
+    float* get_data();
+    const float* get_const_data() const;
 };

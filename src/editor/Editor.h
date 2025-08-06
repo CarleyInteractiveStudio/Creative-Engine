@@ -21,6 +21,7 @@ private:
     void render_hierarchy_panel();
     void render_inspector_panel();
     void render_scene_view_panel();
+    void render_asset_panel();
 
     std::unique_ptr<Window> m_window;
     std::unique_ptr<Renderer> m_renderer;

@@ -78,3 +78,11 @@ Vector3 Matrix4::operator*(const Vector3& vec) const {
     result.z = vec.x * m[0][2] + vec.y * m[1][2] + vec.z * m[2][2] + m[3][2];
     return result;
 }
+
+float* Matrix4::get_data() {
+    return &m[0][0];
+}
+
+const float* Matrix4::get_const_data() const {
+    return &m[0][0];
+}

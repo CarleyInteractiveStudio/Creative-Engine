@@ -1,5 +1,7 @@
 #include "Editor.h"
 #include <typeinfo>
+#include <filesystem>
+#include <fstream>
 #include <SDL3/SDL.h>
 #include "glad/glad.h"
 #include "imgui.h"
@@ -142,6 +144,7 @@ void Editor::render_ui() {
     render_hierarchy_panel();
     render_inspector_panel();
     render_scene_view_panel();
+    render_asset_panel();
 }
 
 void Editor::render_hierarchy_panel() {
@@ -157,17 +160,73 @@ void Editor::render_hierarchy_panel() {
     ImGui::End();
 }
 
+void Editor::render_asset_panel() {
+    ImGui::Begin("Assets");
+
+    const std::filesystem::path asset_path = "."; // Project root
+
+    if (ImGui::Button("Create Folder")) {
+        ImGui::OpenPopup("CreateFolderPopup");
+    }
+
+    ImGui::SameLine();
+    if (ImGui::Button("Create Script")) {
+        ImGui::OpenPopup("CreateScriptPopup");
+    }
+
+    if (ImGui::BeginPopup("CreateFolderPopup")) {
+        static char folderName[128] = "";
+        ImGui::InputText("Folder Name", folderName, sizeof(folderName));
+        if (ImGui::Button("Create")) {
+            if (strlen(folderName) > 0) {
+                std::filesystem::create_directory(asset_path / folderName);
+                // Reset the buffer after creation
+                memset(folderName, 0, sizeof(folderName));
+                ImGui::CloseCurrentPopup();
+            }
+        }
+        ImGui::EndPopup();
+    }
+
+    if (ImGui::BeginPopup("CreateScriptPopup")) {
+        static char scriptName[128] = "";
+        ImGui::InputText("Script Name", scriptName, sizeof(scriptName));
+        if (ImGui::Button("Create")) {
+            if (strlen(scriptName) > 0) {
+                const std::filesystem::path asset_path = ".";
+                std::string filename = std::string(scriptName) + ".cs";
+                std::ofstream file(asset_path / filename);
+                file.close();
+                // Reset the buffer after creation
+                memset(scriptName, 0, sizeof(scriptName));
+                ImGui::CloseCurrentPopup();
+            }
+        }
+        ImGui::EndPopup();
+    }
+
+    ImGui::Separator();
+
+    for (const auto& entry : std::filesystem::directory_iterator(asset_path)) {
+        const auto& path = entry.path();
+        auto relative_path = std::filesystem::relative(path, asset_path);
+        std::string filename_string = relative_path.filename().string();
+
+        if (entry.is_directory()) {
+            ImGui::Text("[D] %s", filename_string.c_str());
+        } else {
+            ImGui::Text("[F] %s", filename_string.c_str());
+        }
+    }
+
+    ImGui::End();
+}
+
 void Editor::render_scene_view_panel() {
     ImGui::Begin("Scene");
 
-    // Get the size of the viewport
     ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-
-    // Get the color attachment texture ID from our framebuffer
     uint32_t textureID = m_framebuffer->GetColorAttachmentRendererID();
-
-    // Display the image
-    // The UV coordinates need to be flipped vertically because of how OpenGL textures are oriented.
     ImGui::Image((void*)(intptr_t)textureID, viewportPanelSize, ImVec2(0, 1), ImVec2(1, 0));
 
     ImGui::End();

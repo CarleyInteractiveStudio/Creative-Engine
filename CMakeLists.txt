@@ -4,8 +4,8 @@ cmake_minimum_required(VERSION 3.16)
 # Define the project
 project(CreativeEngine CXX C)
 
-# Set the C++ standard to 14, as specified in the old Makefile
-set(CMAKE_CXX_STANDARD 14)
+# Set the C++ standard to 17 to use std::filesystem
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Add the SDL git submodule to the build.
