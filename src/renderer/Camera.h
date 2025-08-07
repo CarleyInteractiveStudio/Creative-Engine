@@ -9,6 +9,8 @@ public:
 
     void set_position(const Vector3& pos);
     Vector3 get_position() const;
+    Vector3 get_forward() const;
+    Vector3 get_right() const;
 
     void look_at(const Vector3& target, const Vector3& up);
 

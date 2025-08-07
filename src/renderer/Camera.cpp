@@ -18,6 +18,14 @@ Vector3 Camera::get_position() const {
     return position;
 }
 
+Vector3 Camera::get_forward() const {
+    return forward;
+}
+
+Vector3 Camera::get_right() const {
+    return right;
+}
+
 void Camera::look_at(const Vector3& target, const Vector3& up_dir) {
     forward = target - position;
     forward.normalize();

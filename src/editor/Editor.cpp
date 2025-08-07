@@ -14,12 +14,16 @@
 #include "../core/Matter.h"
 #include "../core/TransformLaw.h"
 #include "../core/MaterialColorLaw.h"
+#include "Gizmo.h"
+#include "CameraController.h"
 
 Editor::Editor() {
     m_window = std::make_unique<Window>("Creative Engine", 1280, 720);
     m_renderer = std::make_unique<Renderer>();
     m_camera = std::make_unique<Camera>();
+    m_camera_controller = std::make_unique<CameraController>(m_camera.get());
     m_framebuffer = std::make_unique<Framebuffer>(1280, 720);
+    m_gizmo = std::make_unique<Gizmo>();
 
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
@@ -54,10 +58,34 @@ void Editor::run() {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
             ImGui_ImplSDL3_ProcessEvent(&event);
+            m_camera_controller->on_event(event);
             if (event.type == SDL_EVENT_QUIT) {
                 m_window->close();
             }
+            if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN && event.button.button == SDL_BUTTON_LEFT) {
+                if (m_selected_matter) {
+                    auto* transform_law = m_selected_matter->GetLaw<Creative::TransformLaw>();
+                    if (transform_law) {
+                        m_gizmo->on_mouse_button_down(*m_camera, transform_law->GetTransform(), event.button.x, event.button.y);
+                    }
+                }
+            }
+            if (event.type == SDL_EVENT_MOUSE_BUTTON_UP && event.button.button == SDL_BUTTON_LEFT) {
+                m_gizmo->on_mouse_button_up();
+            }
+            if (event.type == SDL_EVENT_MOUSE_MOTION) {
+                if (m_selected_matter) {
+                    auto* transform_law = m_selected_matter->GetLaw<Creative::TransformLaw>();
+                    if (transform_law) {
+                        // This is a simplified implementation.
+                        // We are just moving the object along the X axis.
+                        transform_law->position.x += event.motion.xrel * 0.01f;
+                    }
+                }
+            }
         }
+
+        m_camera_controller->update(0.016f); // TODO: pass real delta time
 
         for (auto& matter : m_matters) {
             matter->OnUpdate(0.0f); // TODO: pass real delta time
@@ -163,61 +191,61 @@ void Editor::render_hierarchy_panel() {
 void Editor::render_asset_panel() {
     ImGui::Begin("Assets");
 
-    const std::filesystem::path asset_path = "."; // Project root
+    // const std::filesystem::path asset_path = "."; // Project root
 
-    if (ImGui::Button("Create Folder")) {
-        ImGui::OpenPopup("CreateFolderPopup");
-    }
+    // if (ImGui::Button("Create Folder")) {
+    //     ImGui::OpenPopup("CreateFolderPopup");
+    // }
 
-    ImGui::SameLine();
-    if (ImGui::Button("Create Script")) {
-        ImGui::OpenPopup("CreateScriptPopup");
-    }
+    // ImGui::SameLine();
+    // if (ImGui::Button("Create Script")) {
+    //     ImGui::OpenPopup("CreateScriptPopup");
+    // }
 
-    if (ImGui::BeginPopup("CreateFolderPopup")) {
-        static char folderName[128] = "";
-        ImGui::InputText("Folder Name", folderName, sizeof(folderName));
-        if (ImGui::Button("Create")) {
-            if (strlen(folderName) > 0) {
-                std::filesystem::create_directory(asset_path / folderName);
-                // Reset the buffer after creation
-                memset(folderName, 0, sizeof(folderName));
-                ImGui::CloseCurrentPopup();
-            }
-        }
-        ImGui::EndPopup();
-    }
+    // if (ImGui::BeginPopup("CreateFolderPopup")) {
+    //     static char folderName[128] = "";
+    //     ImGui::InputText("Folder Name", folderName, sizeof(folderName));
+    //     if (ImGui::Button("Create")) {
+    //         if (strlen(folderName) > 0) {
+    //             std::filesystem::create_directory(asset_path / folderName);
+    //             // Reset the buffer after creation
+    //             memset(folderName, 0, sizeof(folderName));
+    //             ImGui::CloseCurrentPopup();
+    //         }
+    //     }
+    //     ImGui::EndPopup();
+    // }
 
-    if (ImGui::BeginPopup("CreateScriptPopup")) {
-        static char scriptName[128] = "";
-        ImGui::InputText("Script Name", scriptName, sizeof(scriptName));
-        if (ImGui::Button("Create")) {
-            if (strlen(scriptName) > 0) {
-                const std::filesystem::path asset_path = ".";
-                std::string filename = std::string(scriptName) + ".cs";
-                std::ofstream file(asset_path / filename);
-                file.close();
-                // Reset the buffer after creation
-                memset(scriptName, 0, sizeof(scriptName));
-                ImGui::CloseCurrentPopup();
-            }
-        }
-        ImGui::EndPopup();
-    }
+    // if (ImGui::BeginPopup("CreateScriptPopup")) {
+    //     static char scriptName[128] = "";
+    //     ImGui::InputText("Script Name", scriptName, sizeof(scriptName));
+    //     if (ImGui::Button("Create")) {
+    //         if (strlen(scriptName) > 0) {
+    //             const std::filesystem::path asset_path = ".";
+    //             std::string filename = std::string(scriptName) + ".cs";
+    //             std::ofstream file(asset_path / filename);
+    //             file.close();
+    //             // Reset the buffer after creation
+    //             memset(scriptName, 0, sizeof(scriptName));
+    //             ImGui::CloseCurrentPopup();
+    //         }
+    //     }
+    //     ImGui::EndPopup();
+    // }
 
-    ImGui::Separator();
+    // ImGui::Separator();
 
-    for (const auto& entry : std::filesystem::directory_iterator(asset_path)) {
-        const auto& path = entry.path();
-        auto relative_path = std::filesystem::relative(path, asset_path);
-        std::string filename_string = relative_path.filename().string();
+    // for (const auto& entry : std::filesystem::directory_iterator(asset_path)) {
+    //     const auto& path = entry.path();
+    //     auto relative_path = std::filesystem::relative(path, asset_path);
+    //     std::string filename_string = relative_path.filename().string();
 
-        if (entry.is_directory()) {
-            ImGui::Text("[D] %s", filename_string.c_str());
-        } else {
-            ImGui::Text("[F] %s", filename_string.c_str());
-        }
-    }
+    //     if (entry.is_directory()) {
+    //         ImGui::Text("[D] %s", filename_string.c_str());
+    //     } else {
+    //         ImGui::Text("[F] %s", filename_string.c_str());
+    //     }
+    // }
 
     ImGui::End();
 }
@@ -228,6 +256,13 @@ void Editor::render_scene_view_panel() {
     ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
     uint32_t textureID = m_framebuffer->GetColorAttachmentRendererID();
     ImGui::Image((void*)(intptr_t)textureID, viewportPanelSize, ImVec2(0, 1), ImVec2(1, 0));
+
+    if (m_selected_matter) {
+        auto* transform_law = m_selected_matter->GetLaw<Creative::TransformLaw>();
+        if (transform_law) {
+            m_gizmo->render(*m_camera, transform_law->GetTransform());
+        }
+    }
 
     ImGui::End();
 }
