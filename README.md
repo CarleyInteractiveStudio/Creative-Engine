@@ -29,6 +29,21 @@ The engine is currently in **Phase 1**, with a focus on building out the core ed
     *   `TransformLaw`: Manages the position, rotation, and scale of a `Matter` object.
     *   `MaterialColorLaw`: Manages the color of a `Matter` object.
 
+## Roadmap
+
+Here are some of the planned features for the future development of the editor:
+
+### Scene View Gizmos
+
+A crucial feature for a 3D editor is the ability to manipulate objects directly in the scene view. The plan is to implement a fully-featured gizmo with the following capabilities:
+
+*   **Operations Toolbar:** A small toolbar in the editor to switch between Translate, Rotate, and Scale modes.
+*   **Translate Gizmo:** A gizmo with 3 colored arrows (red, green, blue) to move objects along the X, Y, and Z axes.
+*   **Rotate Gizmo:** A gizmo with 3 colored rings to rotate objects around the X, Y, and Z axes.
+*   **Scale Gizmo:** A gizmo with handles to scale objects along the axes, as well as a central handle for uniform scaling.
+
+**Implementation Note:** The recommended approach for this feature is to integrate the **ImGuizmo** library (`github.com/CedricGuillemet/ImGuizmo`), which is a popular and robust solution that works directly with ImGui.
+
 ## Getting Started
 
 The project is built using CMake, which can generate project files for a variety of compilers and IDEs.
