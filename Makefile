@@ -1,0 +1,50 @@
+# Compiler and flags
+CXX = g++
+CXXFLAGS = -std=c++14 -Isrc -Ivendor -IGlad/include -ISDL/include
+LDFLAGS = -lSDL3 -lGL -L/app/SDL/build
+
+# Source files
+SRCS = src/main.cpp \
+       src/core/Vector3.cpp \
+       src/core/Matrix4.cpp \
+       src/core/Matter.cpp \
+       src/core/TransformLaw.cpp \
+       src/core/MaterialColorLaw.cpp \
+       src/renderer/Camera.cpp \
+       src/renderer/Mesh.cpp \
+       src/renderer/Material.cpp \
+       src/renderer/Renderer.cpp \
+       src/renderer/Window.cpp \
+       src/editor/Editor.cpp \
+       vendor/imgui.cpp \
+       vendor/imgui_demo.cpp \
+       vendor/imgui_draw.cpp \
+       vendor/imgui_widgets.cpp \
+       vendor/imgui_tables.cpp \
+       vendor/imgui_impl_sdl3.cpp \
+       vendor/imgui_impl_opengl3.cpp \
+       Glad/src/glad.c
+
+OBJS = $(SRCS:.cpp=.o)
+OBJS := $(OBJS:.c=.o)
+
+# Targets
+TARGET = engine
+WIN_TARGET = engine.exe
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS) $(LDFLAGS)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+%.o: %.c
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+run: $(TARGET)
+	./$(TARGET)
+
+clean:
+	rm -f $(OBJS) $(TARGET) $(WIN_TARGET)

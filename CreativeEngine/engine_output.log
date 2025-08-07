@@ -1,0 +1,14 @@
+[CORE INFO]: Initializing Creative Engine...
+[CORE INFO]: SceneSpace created.
+[CORE INFO]: 2D Software Renderer created.
+[CORE TRACE]: Created an Image with dimensions 800x600
+[CORE INFO]: Setting up scene...
+[CORE TRACE]: Matter 'Primary Camera' created.
+[CORE TRACE]: Matter 'Player' created.
+[CORE TRACE]: Matter 'Enemy' created.
+[CORE INFO]: Starting main loop...
+[CORE INFO]: Shutting down Creative Engine.
+[CORE TRACE]: Matter 'Primary Camera' destroyed.
+[CORE TRACE]: Matter 'Player' destroyed.
+[CORE TRACE]: Matter 'Enemy' destroyed.
+[CORE INFO]: SceneSpace destroyed.

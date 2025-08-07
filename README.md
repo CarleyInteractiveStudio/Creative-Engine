@@ -1,200 +1,76 @@
-Perfecto 😁, aquí te paso **la estructura completa del motor Creative Engine** con el concepto de **Matter** (Materia) y **Law** (Ley), junto con instrucciones claras de desarrollo paso a paso, todo sin código.
+# Creative Engine
 
----
+This is a 3D game engine written in C++. It is still under development.
 
-# 📜 Creative Engine — Estructura e Instrucciones
+## Vision and Architecture
 
-**Concepto central:** En Creative Engine, todo en el mundo es **Matter** y cada Matter funciona según una o más **Laws**.
+### Core Concept: Matter and Laws
 
-* **Matter** = objeto o entidad del mundo (tangible o intangible).
-* **Law** = regla o módulo que define el comportamiento de esa Matter (movimiento, apariencia, sonido, etc.).
+In Creative Engine, everything in the world is **Matter**, and every **Matter** operates according to one or more **Laws**.
 
----
+-   **Matter**: An object or entity in the world (tangible or intangible). This is similar to a `GameObject` in Unity.
+-   **Law**: A rule or module that defines the behavior of that **Matter** (e.g., its movement, appearance, sound, etc.). This is similar to a `Component` in Unity.
 
-## 1. Capas del motor
+## Current State
 
-Creative Engine estará dividido en **capas** que trabajan juntas pero son modulares:
+The engine is currently in **Phase 1**, with a focus on building out the core editor functionality. We have a foundational editor built with ImGui and a cross-platform CMake build system.
 
-1. **Platform Layer**
+### Features Implemented:
 
-   * Ventanas, entrada (teclado, mouse, gamepad), temporización, hilos.
-   * Abstracción del sistema operativo.
+*   **Build System:** Cross-platform build system using CMake.
+*   **Platform Layer:** Window creation and input handling using SDL3.
+*   **Core System:** Basic math classes (`Vector3`, `Matrix4`), and the `Matter` and `Law` system.
+*   **Editor:** An integrated editor using ImGui with the following panels:
+    *   **Scene View:** A visual representation of the scene, rendered via a framebuffer.
+    *   **Hierarchy:** Lists all `Matter` objects in the scene and allows for selection.
+    *   **Inspector:** Displays and allows editing of properties for selected `Matter` objects and their attached `Laws`. Includes an "Add Law" feature.
+    *   **Assets:** Lists files and folders in the project directory and allows for the creation of new ones.
+*   **Initial Laws:**
+    *   `TransformLaw`: Manages the position, rotation, and scale of a `Matter` object.
+    *   `MaterialColorLaw`: Manages the color of a `Matter` object.
 
-2. **Core Layer**
+## Roadmap
 
-   * Matemáticas, memoria, logging, eventos globales.
-   * Sistema de tiempo (`delta time`, frames).
+Here are some of the planned features for the future development of the editor:
 
-3. **Matter & Law System**
+### Scene View Gizmos
 
-   * Registro y gestión de todas las Matter.
-   * Administración de Laws y cómo se aplican.
-   * Jerarquía (padre/hijo) y propagación de transformaciones.
+A crucial feature for a 3D editor is the ability to manipulate objects directly in the scene view. The plan is to implement a fully-featured gizmo with the following capabilities:
 
-4. **Scene Space**
+*   **Operations Toolbar:** A small toolbar in the editor to switch between Translate, Rotate, and Scale modes.
+*   **Translate Gizmo:** A gizmo with 3 colored arrows (red, green, blue) to move objects along the X, Y, and Z axes.
+*   **Rotate Gizmo:** A gizmo with 3 colored rings to rotate objects around the X, Y, and Z axes.
+*   **Scale Gizmo:** A gizmo with handles to scale objects along the axes, as well as a central handle for uniform scaling.
 
-   * Contenedor de todas las Matter activas.
-   * Soporte de subescenas y streaming de partes del mundo.
+**Implementation Note:** The recommended approach for this feature is to integrate the **ImGuizmo** library (`github.com/CedricGuillemet/ImGuizmo`), which is a popular and robust solution that works directly with ImGui.
 
-5. **Rendering** (2D y 3D)
+## Getting Started
 
-   * Cámaras, materiales, luces, mallas.
-   * Pipeline gráfico optimizado.
+The project is built using CMake, which can generate project files for a variety of compilers and IDEs.
 
-6. **Physics**
+### Prerequisites
 
-   * Motor de colisiones y simulación.
-   * Laws que aplican movimiento, gravedad, fuerzas.
+*   **CMake:** Version 3.16 or higher.
+*   **A C++17 compatible compiler:** (e.g., GCC, Clang, MSVC).
+*   **(For Windows):** Visual Studio 2019 or later with the "Desktop development with C++" workload.
 
-7. **Animation**
+### Building on Linux
 
-   * Animaciones esqueléticas y de sprites.
-   * Mezcla de clips y transiciones.
-
-8. **Audio**
-
-   * Sonido posicional, música, efectos.
-
-9. **Scripting (C#)**
-
-   * API para que el usuario controle Matter y Laws desde scripts.
-   * Ciclo de vida (`Start`, `Update`, `OnEvent`).
-
-10. **Asset Management**
-
-    * Importación de modelos FBX, glTF, texturas, sonidos.
-    * Conversión a formato interno.
-
-11. **Editor Tools**
-
-    * Interfaz gráfica para crear, mover y modificar Matter y Laws.
-    * Inspector y vista de escena.
-
-12. **Build System**
-
-    * Empaquetado de assets y compilación final.
-
----
-
-## 2. Estructura de carpetas conceptual
-
+```bash
+# From the project root directory
+mkdir build
+cd build
+cmake ..
+make
 ```
-/CreativeEngine/
-  /Engine/
-    /Platform/        # Plataforma y entrada
-    /Core/            # Núcleo del motor
-    /MatterSystem/    # Gestión de Matter y Laws
-    /SceneSpace/      # Escenas y subescenas
-    /Renderer/        # Render 2D/3D
-    /Physics/         # Física y colisiones
-    /Animation/       # Animaciones
-    /Audio/           # Sonido
-    /Scripting/       # Soporte C#
-    /Assets/          # Gestor de recursos
-    /UI/              # Herramientas del editor
-  /Editor/            # Editor visual
-  /Tools/             # Herramientas CLI
-  /GameProjects/      # Proyectos hechos con el motor
-  /Build/             # Sistema de compilación
-  /Docs/              # Documentación
+The executable will be located at `build/src/engine`.
+
+### Building on Windows
+
+```bash
+# From the project root directory, in a command prompt
+mkdir build
+cd build
+cmake ..
 ```
-
----
-
-## 3. Instrucciones claras de desarrollo
-
-### **Fase 0 — Fundamentos**
-
-1. Define los **formatos de archivo propios** para:
-
-   * Escenas (`.cescene`) → lista de Matter y sus Laws.
-   * Prefabs (`.ceprefab`) → plantillas de Matter con Laws.
-   * Asset bundles (`.cepack`) → empaquetado de recursos.
-
-2. Crea el **motor base**:
-
-   * Inicializar plataforma, entrada y temporizador.
-   * Configuración del Core.
-   * Gestor de assets vacío pero funcional.
-
----
-
-### **Fase 1 — Matter y Laws**
-
-1. Diseñar **Matter**:
-
-   * Identificador único, nombre y estado (activo/inactivo).
-   * Lista de Laws aplicados.
-   * Jerarquía (padre/hijo).
-
-2. Diseñar **Laws**:
-
-   * Cada Law tiene un tipo y datos propios.
-   * Ejemplos: `MotionLaw`, `AppearanceLaw`, `PhysicsLaw`, `AudioLaw`.
-   * Pueden interactuar entre sí vía un sistema de eventos.
-
-3. Crear **Scene Space**:
-
-   * Contenedor de Matter activos.
-   * Soporte para cargar y descargar escenas sin reiniciar todo.
-
----
-
-### **Fase 2 — Renderizado**
-
-1. Soporte para:
-
-   * Cámara ortográfica (2D) y perspectiva (3D).
-   * Render de mallas y sprites.
-   * Iluminación básica.
-
-2. Integrar Laws de apariencia (`AppearanceLaw`) que manejen:
-
-   * Materiales, texturas, colores.
-   * Modelos FBX/glTF convertidos a formato interno.
-
----
-
-### **Fase 3 — Física y animación**
-
-1. Física:
-
-   * `PhysicsLaw` para movimiento y colisiones.
-   * Motor de detección y respuesta.
-
-2. Animación:
-
-   * `AnimationLaw` para reproducir clips.
-   * Soporte para animaciones esqueléticas y blending.
-
----
-
-### **Fase 4 — Scripting y editor**
-
-1. Integrar C#:
-
-   * API expuesta para manipular Matter y Laws.
-   * Hooks (`Start`, `Update`, `OnCollision`, etc.).
-
-2. Editor:
-
-   * Vista de escena y jerarquía de Matter.
-   * Inspector para editar Laws y propiedades.
-   * Arrastrar y soltar assets.
-
----
-
-### **Fase 5 — Build y optimización**
-
-1. Empaquetar:
-
-   * Asset bundles (`.cepack`) con todos los recursos optimizados.
-   * Compilación de scripts.
-
-2. Optimizar:
-
-   * Culling, batching, LOD.
-   * Streaming de escenas.
-
----
-
+This will generate a Visual Studio solution file (`CreativeEngine.sln`) inside the `build` directory. Open this file in Visual Studio to compile and run the project.
