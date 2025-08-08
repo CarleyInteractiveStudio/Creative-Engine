@@ -18,6 +18,8 @@ set(RENDERER_SOURCES
 
 set(EDITOR_SOURCES
     editor/Editor.cpp
+    editor/CameraController.cpp
+    editor/Gizmo.cpp
 )
 
 set(VENDOR_SOURCES
@@ -50,5 +52,13 @@ target_include_directories(engine PUBLIC
 # Find the OpenGL package
 find_package(OpenGL REQUIRED)
 
-# Link the engine against SDL3 and OpenGL
-target_link_libraries(engine PRIVATE SDL3::SDL3 OpenGL::GL)
+# Platform-specific configuration
+if(WIN32)
+    # On Windows, we need to link against SDL3main and some system libraries
+    target_link_libraries(engine PRIVATE SDL3::SDL3 SDL3::SDL3main OpenGL::GL gdi32 shell32 user32)
+    # This is a standard define for Windows GUI applications
+    target_compile_definitions(engine PRIVATE WIN32)
+else()
+    # On other platforms (like Linux), this is sufficient
+    target_link_libraries(engine PRIVATE SDL3::SDL3 OpenGL::GL)
+endif()

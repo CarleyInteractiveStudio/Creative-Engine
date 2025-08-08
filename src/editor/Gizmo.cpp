@@ -6,7 +6,7 @@
 #include "glad/glad.h"
 
 // Helper function to read shader files
-std::string read_shader_file(const char* path) {
+static std::string read_shader_file(const char* path) {
     std::ifstream file(path);
     std::stringstream buffer;
     buffer << file.rdbuf();
@@ -94,9 +94,13 @@ Gizmo::~Gizmo() {
 
 void Gizmo::render(const Camera& camera, const Matrix4& model_matrix) {
     glUseProgram(m_shader_program);
+
+    const Matrix4 view_matrix = camera.get_view_matrix();
+    const Matrix4 projection_matrix = camera.get_projection_matrix();
+
     glUniformMatrix4fv(glGetUniformLocation(m_shader_program, "model"), 1, GL_FALSE, &model_matrix.m[0][0]);
-    glUniformMatrix4fv(glGetUniformLocation(m_shader_program, "view"), 1, GL_FALSE, &camera.get_view_matrix().m[0][0]);
-    glUniformMatrix4fv(glGetUniformLocation(m_shader_program, "projection"), 1, GL_FALSE, &camera.get_projection_matrix().m[0][0]);
+    glUniformMatrix4fv(glGetUniformLocation(m_shader_program, "view"), 1, GL_FALSE, &view_matrix.m[0][0]);
+    glUniformMatrix4fv(glGetUniformLocation(m_shader_program, "projection"), 1, GL_FALSE, &projection_matrix.m[0][0]);
 
     glBindVertexArray(m_vao);
     glDrawArrays(GL_LINES, 0, 6);

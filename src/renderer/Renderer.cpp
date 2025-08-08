@@ -8,7 +8,7 @@
 #define GL_GLEXT_PROTOTYPES
 #include <SDL3/SDL_opengl.h>
 
-std::string read_shader_file(const char* path) {
+static std::string read_shader_file(const char* path) {
     std::ifstream file(path);
     std::stringstream stream;
     stream << file.rdbuf();

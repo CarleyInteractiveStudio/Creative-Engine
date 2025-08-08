@@ -14,16 +14,16 @@ CameraController::~CameraController()
 void CameraController::on_event(SDL_Event& event)
 {
     if (event.type == SDL_EVENT_KEY_DOWN) {
-        if (event.key.keysym.sym == SDLK_w) m_w_pressed = true;
-        if (event.key.keysym.sym == SDLK_a) m_a_pressed = true;
-        if (event.key.keysym.sym == SDLK_s) m_s_pressed = true;
-        if (event.key.keysym.sym == SDLK_d) m_d_pressed = true;
+        if (event.key.key == SDLK_W) m_w_pressed = true;
+        if (event.key.key == SDLK_A) m_a_pressed = true;
+        if (event.key.key == SDLK_S) m_s_pressed = true;
+        if (event.key.key == SDLK_D) m_d_pressed = true;
     }
     if (event.type == SDL_EVENT_KEY_UP) {
-        if (event.key.keysym.sym == SDLK_w) m_w_pressed = false;
-        if (event.key.keysym.sym == SDLK_a) m_a_pressed = false;
-        if (event.key.keysym.sym == SDLK_s) m_s_pressed = false;
-        if (event.key.keysym.sym == SDLK_d) m_d_pressed = false;
+        if (event.key.key == SDLK_W) m_w_pressed = false;
+        if (event.key.key == SDLK_A) m_a_pressed = false;
+        if (event.key.key == SDLK_S) m_s_pressed = false;
+        if (event.key.key == SDLK_D) m_d_pressed = false;
     }
     if (event.type == SDL_EVENT_MOUSE_MOTION) {
         if (event.motion.state & SDL_BUTTON_RMASK) {
