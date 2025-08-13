@@ -197,4 +197,4 @@ Creative Engine estará dividido en **capas** que trabajan juntas pero son modul
    * Streaming de escenas.
 
 ---
-
+y usaremos GLFW e vez de sdl
