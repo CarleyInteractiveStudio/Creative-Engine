@@ -198,3 +198,117 @@ Creative Engine estará dividido en **capas** que trabajan juntas pero son modul
 
 ---
 y usaremos GLFW e vez de sdl
+y el plan 2 es empezar con un motor 2d
+
+# 🚀 Plan para crear un motor 2D con Creative Engine
+
+Para nuestro motor 2D adaptaremos la arquitectura de Creative Engine, simplificando algunas capas y eligiendo librerías especializadas. El flujo de trabajo se dividirá en fases iterativas desde el núcleo mínimo hasta un prototipo completo.
+
+---
+
+## 1. Estructura de capas 2D
+
+1. **Platform Layer**  
+   - GLFW + GLAD para ventana, contexto OpenGL 2D y eventos de entrada.  
+   - Reloj de juego (`delta time`).
+
+2. **Core Layer**  
+   - Contenedores de datos, logging y sistema de eventos global.  
+   - Gestión básica de memoria y perfiles de rendimiento.
+
+3. **Matter & Law System 2D**  
+   - **Matter**: entidades con posición, rotación y escala en 2D.  
+   - **Law**: módulos como `Motion2DLaw`, `SpriteRenderLaw`, `InputLaw`.
+
+4. **Scene2D**  
+   - Gestión de capas, orden de dibujo (z-index) y culling simple.
+
+5. **Rendering 2D**  
+   - Cámara ortográfica.  
+   - Batch de sprites con atlas de texturas (stb_image para cargar).  
+
+6. **Physics 2D**  
+   - Integración con Box2D o Chipmunk.  
+   - `Physics2DLaw` para colisiones y fuerzas.
+
+7. **Audio**  
+   - SDL2 Mixer o OpenAL para reproducir efectos y música.
+
+8. **Scripting**  
+   - Embebido de Lua o Python mínimo.  
+   - Hooks `Start()` y `Update(delta)` para cada Matter.
+
+9. **Asset Management**  
+   - Carga de texturas, sonidos y datos de escena.  
+   - Formatos internos `.cescene2D`, `.ceatlas`, `.ceaudio`.
+
+10. **Editor Tools**  
+    - Dear ImGui + GLFW para depuración y prototipos.  
+    - Panel de jerarquía, inspector de Laws y viewport 2D.
+
+11. **Build System**  
+    - CMake para compilar librerías y ensamblar assets.
+
+---
+
+## 2. Fases de desarrollo
+
+### Fase 0 — Núcleo mínimo  
+- Inicializar GLFW y GLAD.  
+- Crear ventana y bucle principal con `PollEvents()`, `Update()`, `SwapBuffers()`.  
+- Añadir Core Layer con logger y temporización.
+
+### Fase 1 — Entidades y Laws  
+- Definir clase `Matter2D` con transform 2D.  
+- Implementar `Motion2DLaw` (desplazamiento por velocidad).  
+- Conectar `InputLaw` para mover Matter con teclado/gamepad.
+
+### Fase 2 — Renderizado de sprites  
+- Integrar stb_image para cargar texturas.  
+- Crear `SpriteRenderLaw` que dibuja quads con UV.  
+- Implementar sistema de batching para agrupar draw calls.
+
+### Fase 3 — Física 2D  
+- Integrar Box2D como submódulo en CMake.  
+- Implementar `Physics2DLaw` para cuerpos dinámicos y estáticos.  
+- Sincronizar transform de Matter con simulación de Box2D.
+
+### Fase 4 — Audio y UI  
+- Añadir SDL2 Mixer y exponer `AudioLaw`.  
+- Cargar y reproducir efectos/música por eventos.  
+- Crear sistema de UI básico con ImGui (botones, sliders).
+
+### Fase 5 — Scripting y editor  
+- Embebe Lua: expone Matter y Laws a scripts.  
+- Desarrolla herramientas con ImGui para editar propiedades en tiempo real.  
+- Soporte de recarga en caliente de scripts.
+
+### Fase 6 — Empaquetado y optimización  
+- Crear asset bundles (`.ce2dpack`).  
+- Optimizar batching, culling y compresión de texturas.  
+- Generar ejecutable multiplataforma (CMake + conan/vcpkg).
+
+---
+
+## 3. Organización de carpetas
+
+```
+/CreativeEngine2D/
+  /Engine/
+    /Platform/GLFWPlatform/
+    /Core/
+    /MatterSystem/      # Matter2D & Laws
+    /Scene2D/
+    /Renderer2D/
+    /Physics2D/
+    /Audio/
+    /Scripting/
+    /Assets/
+    /EditorUI/
+  /Build/
+  /Docs/
+```
+
+---
+
+Por delante, podemos detallar el `CMakeLists.txt` base que reúna GLFW, stb_image, Box2D, SDL2 Mixer y Lua, o bucear en el diseño de tu `Matter2D` para maximizar flexibilidad. Además, podemos explorar cómo añadir tilemaps y shaders personalizados para darle más personalidad a tu motor 2D.
