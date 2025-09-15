@@ -1,0 +1,12 @@
+[package]
+name = "creative_engine_core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wgpu = "0.19.1"
+pollster = "0.3.0" # Downgrading to be safe
+egui = "0.27.2"
+egui-wgpu = "0.27.2"
+egui-winit = "0.27.2"
+bytemuck = { version = "1.15", features = ["derive"] }

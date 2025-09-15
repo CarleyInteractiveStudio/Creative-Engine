@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "creative_engine_core",
+    "creative_engine_editor",
+]
+resolver = "2"
