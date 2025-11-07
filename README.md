@@ -1,5 +1,3 @@
-Perfecto 😁, aquí te paso **la estructura completa del motor Creative Engine** con el concepto de **Matter** (Materia) y **Law** (Ley), junto con instrucciones claras de desarrollo paso a paso, todo sin código.
-
 ---
 
 # 📜 Creative Engine — Estructura e Instrucciones
@@ -312,3 +310,4 @@ Para nuestro motor 2D adaptaremos la arquitectura de Creative Engine, simplifica
 ---
 
 Por delante, podemos detallar el `CMakeLists.txt` base que reúna GLFW, stb_image, Box2D, SDL2 Mixer y Lua, o bucear en el diseño de tu `Matter2D` para maximizar flexibilidad. Además, podemos explorar cómo añadir tilemaps y shaders personalizados para darle más personalidad a tu motor 2D.
+este es el repositorio de la vercion app del motor aun no esta en desarrollo, pero la vercion web esta disponible y en constante desarrollo desde https://carleyinteractivestudio.github.io/Creative-Engine-Beta/ aun falta mucho pero esta funcinal no para crear juego si no para tener una perspectiva de como sera
