@@ -1,0 +1,5 @@
+C:/Users/USER1/OneDrive/Documentos/Creative Engine/Creative Engine App/Creative Engine/build/CMakeFiles/edit_cache.dir
+C:/Users/USER1/OneDrive/Documentos/Creative Engine/Creative Engine App/Creative Engine/build/CMakeFiles/rebuild_cache.dir
+C:/Users/USER1/OneDrive/Documentos/Creative Engine/Creative Engine App/Creative Engine/build/src/CMakeFiles/GameEngine.dir
+C:/Users/USER1/OneDrive/Documentos/Creative Engine/Creative Engine App/Creative Engine/build/src/CMakeFiles/edit_cache.dir
+C:/Users/USER1/OneDrive/Documentos/Creative Engine/Creative Engine App/Creative Engine/build/src/CMakeFiles/rebuild_cache.dir
